@@ -12,6 +12,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
+<!--Credentials for firebase login 
+lucaticgrupo03@gmail.com
+Lucatic03$ -->
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
