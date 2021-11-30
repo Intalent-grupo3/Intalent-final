@@ -1,15 +1,16 @@
-import express, { Router } from 'express';
+import express from 'express';
 //función que genera las personas aleatorias
-import {generargenterandom} from './llamadaFecthApi/llamadaapi.mjs';
+import botsRouter from './routes/bots.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
+const app = express();
 
 //puerto de conexión
 const port=process.env.PORT || 8080;
 
 //middlewares
-app.use()
+app.use('/api',botsRouter)
 
 //atlas connection
 mongoose.connect(process.env.ATLAS_URI)
