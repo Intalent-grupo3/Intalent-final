@@ -10,23 +10,22 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './components/main/main.component';
 import { CardComponent } from './components/card/card.component';
 import { CreateProfileComponent } from './components/create-profile/create-profile.component';
+import { InComponent } from './components/in/in.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SigninComponent,
-    ProfileComponent,
-    NavbarComponent,
-    MainComponent,
-    CardComponent,
-    CreateProfileComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        SigninComponent,
+        ProfileComponent,
+        NavbarComponent,
+        MainComponent,
+        CardComponent,
+        CreateProfileComponent,
+        InComponent,
+    ],
+    imports: [BrowserModule, AppRoutingModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
