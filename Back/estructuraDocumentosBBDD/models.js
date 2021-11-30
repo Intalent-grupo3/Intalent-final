@@ -1,31 +1,29 @@
 import mongoose from "mongoose";
 var repSchema = mongoose.Schema({
-    genero: String,
-    nombre: String,
-    ciudad: String,
-    pais: String,
+    gender: String,
+    name: String,
+    city: String,
+    country: String,
     // latitud: String,
     // longitud: String,
     dob: Date,
-    edad: String,
     bio: String,
-    imagen :String,
+    image :String,
     likes:[],
     dislikes: [],
     topics:[],
 })
 export var Persona = mongoose.model('Persona', repSchema);
-export function assignDataValue(genero, nombre,ciudad,pais,dob,edad,imagen,bio,topics) {
+export function assignDataValue(gender, name,city,country,dob,image,bio,topics) {
     var upData = new Persona()
-    upData.genero = genero;
-    upData.nombre = nombre;
-    upData.ciudad = ciudad;
-    upData.pais = pais;
+    upData.gender = gender;
+    upData.name = name;
+    upData.city = city;
+    upData.country = country;
     // upData.latitud = latitud;
     // upData.longitud = longitud;
     upData.dob = dob;
-    upData.edad = edad;
-    upData.imagen=imagen;
+    upData.image=image;
     upData.bio=bio;
     upData.topics=topics;
     upData.save();
