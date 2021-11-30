@@ -1,6 +1,6 @@
 # LucaticGrupo3Final
 
-##Listado de componentes
+## Listado de componentes
 
 - Login: acceso de sesión
 - Signin: registro en la aplicacion
