@@ -1,1 +1,68 @@
-<p>create-profile works!</p>
+<div class="container create">
+    <form class="create--form">
+        <div class="form-group">
+            <label for="create--name">Nombre</label>
+            <input
+                required
+                ngModel
+                #userName="ngModel"
+                type="text"
+                name="create--name"
+                id="create--name"
+                class="form-control"
+                (change)="logName(userName)"
+            />
+            <div
+                class="alert alert-danger"
+                *ngIf="userName.touched && !userName.valid"
+            >
+                Es necesario escribir tu Nombre
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="create--age">Año de nacimiento</label>
+            <input
+                required
+                ngModel
+                #userAge="ngModel"
+                type="date"
+                name="create--age"
+                id="create--age"
+                class="form-control"
+                (change)="logAge(userAge)"
+            />
+        </div>
+        <div class="form-group">
+            <label for="create--gender">Género</label>
+            <select
+                required
+                ngModel
+                #userGender="ngModel"
+                name="create--gender"
+                id="create--gender"
+                class="form-control"
+                (change)="logGender(userGender)"
+            >
+                <option value="male">Hombre</option>
+                <option value="female">Mujer</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <span>Intereses</span>
+            <button>Naturaleza</button> <button>Programación</button>
+            <button>Leer</button> <button>Juegos de mesa</button>
+            <button>Karaoke</button> <button>Netflix</button>
+        </div>
+        <div class="form-group">
+            <label for="create--text">Descripción</label>
+            <textarea
+                name="create--text"
+                id="create--text"
+                cols="30"
+                rows="10"
+            ></textarea>
+        </div>
+        <button class="btn btn-primary" (click)="log()">Continuar</button>
+        <!-- <input type="submit" value="Continuar" routerLink="../main" /> -->
+    </form>
+</div>
