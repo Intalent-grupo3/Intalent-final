@@ -13,22 +13,19 @@ import { CreateProfileComponent } from './components/create-profile/create-profi
 import { InComponent } from './components/in/in.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SigninComponent,
-    ProfileComponent,
-    NavbarComponent,
-    MainComponent,
-    CardComponent,
-    CreateProfileComponent,
-    InComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        SigninComponent,
+        ProfileComponent,
+        NavbarComponent,
+        MainComponent,
+        CardComponent,
+        CreateProfileComponent,
+        InComponent,
+    ],
+    imports: [BrowserModule, AppRoutingModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

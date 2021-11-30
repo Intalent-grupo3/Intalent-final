@@ -1,1 +1,35 @@
-<p>create-profile works!</p>
+<div class="container create">
+    <form [formGroup]="createForm" class="create--form">
+        <label for="create--name">Nombre</label>
+        <input
+            type="text"
+            name="create--name"
+            id="create--name"
+            class="login--input"
+        />
+        <label for="create--age">Año de nacimiento</label>
+        <input
+            type="date"
+            name="create--age"
+            id="create--age"
+            class="login--input"
+        />
+        <label for="create--gender">Género</label>
+        <select name="create--gender" id="create--gender">
+            <option value="male">Hombre</option>
+            <option value="female">Mujer</option>
+        </select>
+        <span>Intereses</span>
+        <button>Naturaleza</button> <button>Programación</button>
+        <button>Leer</button> <button>Juegos de mesa</button>
+        <button>Karaoke</button> <button>Netflix</button>
+        <label for="create--text">Descripción</label>
+        <textarea
+            name="create--text"
+            id="create--text"
+            cols="30"
+            rows="10"
+        ></textarea>
+        <input type="submit" value="Continuar" routerLink="../main" />
+    </form>
+</div>
