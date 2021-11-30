@@ -26,7 +26,8 @@ function onSuccess(response){
         // let longitud=informacion.data.results[i].location.coordinates.longitude;
         let dob=informacion.data.results[i].dob.date;
         let edad=informacion.data.results[i].dob.age;
-        assignDataValue(genero, nombre,ciudad,pais,dob,edad)
+        let imagen=informacion.data.results[i].picture.large;
+        assignDataValue(genero, nombre,ciudad,pais,dob,edad,imagen)
     }
 }
 
