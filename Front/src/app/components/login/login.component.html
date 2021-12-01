@@ -1,1 +1,18 @@
-<p>login works!</p>
+<div class="container login">
+    <form class="login--form">
+        <input
+            type="text"
+            name="login--name"
+            id="login--name"
+            class="login--input"
+        />
+        <input
+            type="password"
+            name="login--pw"
+            id="login--pw"
+            class="login--input"
+        />
+        <input type="submit" value="{{ submitValue }}" routerLink="../main" />
+    </form>
+    <a routerLink="../signin" class="link">No tengo cuenta</a>
+</div>

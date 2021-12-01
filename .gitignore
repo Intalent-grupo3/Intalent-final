@@ -8,10 +8,7 @@
 /bazel-out
 
 # dependencies
-/node_modules
-
-# archivos de pruebas
-/request.http
+**/node_modules
 
 # profiling files
 chrome-profiler-events*.json
@@ -32,6 +29,17 @@ chrome-profiler-events*.json
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
+
+# misc
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
 
 # System Files
 .DS_Store
