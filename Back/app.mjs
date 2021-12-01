@@ -1,10 +1,21 @@
 import express from 'express';
-//función que genera las personas aleatorias
-import botsRouter from './routes/bots.js';
 import mongoose from 'mongoose';
+import cors from 'cors';
+
+//función que genera las personas aleatorias
+import botsRouter from './routes/routes.js';
+
+//Para que la conexión a Atlas sea con una variable de entorno segura
 import dotenv from 'dotenv';
 dotenv.config();
+
+
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(cors());
 
 //puerto de conexión
 const port=process.env.PORT || 8080;
