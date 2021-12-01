@@ -41,6 +41,15 @@ export class CreateProfileComponent implements OnInit {
     logCountry(x: any) {
         this.user.country = x.value;
     }
+    logImage(event: any) {
+        let reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = () => {
+            this.user.image = reader.result;
+            console.log(this.user.image);
+        };
+    }
+
     logTopic(x: any) {
         console.log('x.name', x.name);
         if (x.value) {
