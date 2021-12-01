@@ -1,6 +1,6 @@
 # LucaticGrupo3Final
 
-## Listado de componentes
+##Listado de componentes
 
 - Login: acceso de sesión
 - Signin: registro en la aplicacion
@@ -11,6 +11,16 @@
 - Navbar: Barra de navegación de la aplicacion
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
+
+<!--Credentials for firebase and MongoDB Atlas login 
+lucaticgrupo03@gmail.com
+Lucatic03$ 
+
+MongoDb Atlas admin credentials:
+admin
+root-->
+
+
 
 ## Development server
 
