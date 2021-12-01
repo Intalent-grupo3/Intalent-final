@@ -31,7 +31,7 @@ export class CreateProfileComponent implements OnInit {
         this.persona.name = x.value;
     }
     logAge(x: any) {
-        this.persona.age = x.value;
+        this.persona.dob = x.value;
     }
     logGender(x: any) {
         this.persona.gender = x.value;
@@ -55,6 +55,7 @@ export class CreateProfileComponent implements OnInit {
     log():any {
         console.log(this.persona);
         this.crudService.addnewuser(this.persona)
+        
         .subscribe({next:(any)=>{
             console.log('Data added successfully!')
             this.ngZone.run(() => this.router.navigateByUrl('/'))}
