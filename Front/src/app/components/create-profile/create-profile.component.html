@@ -1,35 +1,125 @@
 <div class="container create">
-    <form [formGroup]="createForm" class="create--form">
-        <label for="create--name">Nombre</label>
-        <input
-            type="text"
-            name="create--name"
-            id="create--name"
-            class="login--input"
-        />
-        <label for="create--age">Año de nacimiento</label>
-        <input
-            type="date"
-            name="create--age"
-            id="create--age"
-            class="login--input"
-        />
-        <label for="create--gender">Género</label>
-        <select name="create--gender" id="create--gender">
-            <option value="male">Hombre</option>
-            <option value="female">Mujer</option>
-        </select>
-        <span>Intereses</span>
-        <button>Naturaleza</button> <button>Programación</button>
-        <button>Leer</button> <button>Juegos de mesa</button>
-        <button>Karaoke</button> <button>Netflix</button>
-        <label for="create--text">Descripción</label>
-        <textarea
-            name="create--text"
-            id="create--text"
-            cols="30"
-            rows="10"
-        ></textarea>
-        <input type="submit" value="Continuar" routerLink="../main" />
+    <form class="create--form">
+        <div class="form-group">
+            <label for="create--name">Nombre</label>
+            <input
+                required
+                ngModel
+                #userName="ngModel"
+                type="text"
+                name="create--name"
+                id="create--name"
+                class="form-control"
+                (change)="logName(userName)"
+            />
+            <div
+                class="alert alert-danger"
+                *ngIf="userName.touched && !userName.valid"
+            >
+                Es necesario escribir tu Nombre
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="create--age">Año de nacimiento</label>
+            <input
+                required
+                ngModel
+                #userAge="ngModel"
+                type="date"
+                name="create--age"
+                id="create--age"
+                class="form-control"
+                (change)="logAge(userAge)"
+            />
+        </div>
+        <div class="form-group">
+            <label for="create--gender">Género</label>
+            <select
+                required
+                ngModel
+                #userGender="ngModel"
+                name="create--gender"
+                id="create--gender"
+                class="form-control"
+                (change)="logGender(userGender)"
+            >
+                <option value="male">Hombre</option>
+                <option value="female">Mujer</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="create--city">Ciudad</label>
+            <input
+                required
+                ngModel
+                #userCity="ngModel"
+                type="text"
+                name="create--city"
+                id="create--city"
+                class="form-control"
+                (change)="logCity(userCity)"
+            />
+            <div
+                class="alert alert-danger"
+                *ngIf="userName.touched && !userName.valid"
+            >
+                Es necesario escribir tu Ciudad
+            </div>
+            <div class="form-group">
+                <label for="create--country">Pais</label>
+                <input
+                    required
+                    ngModel
+                    #userCuntry="ngModel"
+                    type="text"
+                    name="create--country"
+                    id="create--country"
+                    class="form-control"
+                    (change)="logCountry(userCuntry)"
+                />
+                <div
+                    class="alert alert-danger"
+                    *ngIf="userName.touched && !userName.valid"
+                >
+                    Es necesario escribir tu Pais
+                </div>
+            </div>
+            <div
+                class="alert alert-danger"
+                *ngIf="userName.touched && !userName.valid"
+            >
+                Es necesario escribir tu Nombre
+            </div>
+        </div>
+        <div class="form-group">
+            <span>Intereses</span>
+            <div *ngFor="let topic of topicsList">
+                <input
+                    ngModel
+                    #userTopic="ngModel"
+                    type="checkbox"
+                    id="topic-{{ topic }}"
+                    name="{{ topic }}"
+                    value="{{ topic }}"
+                    (change)="logTopic(userTopic)"
+                />
+                <label for="topic-{{ topic }}"> {{ topic }}</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="create--text">Descripción</label>
+            <textarea
+                required
+                ngModel
+                #userBio="ngModel"
+                name="create--text"
+                id="create--text"
+                cols="30"
+                rows="10"
+                (change)="logBio(userBio)"
+            ></textarea>
+        </div>
+        <button class="btn btn-primary" (click)="log()">Continuar</button>
+        <!-- <input type="submit" value="Continuar" routerLink="../main" /> -->
     </form>
 </div>
