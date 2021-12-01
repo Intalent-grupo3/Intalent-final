@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user';
+import { Component, OnInit,NgZone } from '@angular/core';
+import { CrudServicesService } from 'src/app/services/crud-services.service';
+import { Router } from '@angular/router';
+import { Persona } from '../../models/user';
 
 @Component({
     selector: 'app-create-profile',
@@ -7,7 +9,7 @@ import { User } from '../../models/user';
     styleUrls: ['./create-profile.component.scss'],
 })
 export class CreateProfileComponent implements OnInit {
-    user: User = {} as User;
+    persona: Persona = {} as Persona;
     topicsList = [
         'Naturaleza',
         'Ir de cañas',
@@ -18,37 +20,54 @@ export class CreateProfileComponent implements OnInit {
         'Idiomas',
     ];
 
-    constructor() {}
+    constructor(
+        private crudService: CrudServicesService,
+        private router: Router,
+        private ngZone: NgZone,
+    ) {}
 
     // Recogide de información de los inputs
     logName(x: any) {
-        this.user.name = x.value;
+        this.persona.name = x.value;
     }
     logAge(x: any) {
-        this.user.age = x.value;
+        this.persona.dob = x.value;
     }
     logGender(x: any) {
-        this.user.gender = x.value;
+        this.persona.gender = x.value;
     }
     logCity(x: any) {
-        this.user.city = x.value;
+        this.persona.city = x.value;
     }
     logCountry(x: any) {
-        this.user.country = x.value;
+        this.persona.country = x.value;
     }
     logTopic(x: any) {
         if (x.value) {
-            this.user.topics.push(x.name);
+            this.persona.topics.push(x.name);
         }
-        console.log(this.user.topics);
+        console.log(this.persona.topics);
     }
     logBio(x: any) {
-        this.user.bio = x.value;
+        this.persona.bio = x.value;
     }
     // Uso conjunto de los datos guardados en el objeto
-    log() {
-        console.log(this.user);
+    log():any {
+        console.log(this.persona);
+        this.crudService.addnewuser(this.persona)
+        
+        .subscribe({next:(any)=>{
+            console.log('Data added successfully!')
+            this.ngZone.run(() => this.router.navigateByUrl('/'))}
+          , error:(err)=>{
+            console.log(err);}
+      })
     }
+    ngOnInit() { }
+    // crearusuario(){
+    //     addnewpersona()
 
-    ngOnInit(): void {}
+    // }
+
+
 }

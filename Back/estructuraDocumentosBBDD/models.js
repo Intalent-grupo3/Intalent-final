@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 var repSchema = mongoose.Schema({
+    id:String,
     gender: String,
     name: String,
     city: String,
@@ -24,7 +25,6 @@ export function assignDataValue(gender, name,city,country,dob,image,bio,topics) 
     // upData.longitud = longitud;
     upData.dob = dob;
     upData.image=image;
-    upData.bio=bio;
     upData.topics=topics;
     upData.save();
 }
