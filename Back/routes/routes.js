@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from 'mongoose'
-import { Persona } from "../estructuraDocumentosBBDD/models";
+import { Persona } from "../estructuraDocumentosBBDD/models.js";
 var app = express();
 app.use(express.json());
 const router = express.Router();
