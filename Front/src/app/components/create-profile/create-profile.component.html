@@ -48,18 +48,75 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="create--city">Ciudad</label>
+            <input
+                required
+                ngModel
+                #userCity="ngModel"
+                type="text"
+                name="create--city"
+                id="create--city"
+                class="form-control"
+                (change)="logCity(userCity)"
+            />
+            <div
+                class="alert alert-danger"
+                *ngIf="userName.touched && !userName.valid"
+            >
+                Es necesario escribir tu Ciudad
+            </div>
+            <div class="form-group">
+                <label for="create--country">Pais</label>
+                <input
+                    required
+                    ngModel
+                    #userCuntry="ngModel"
+                    type="text"
+                    name="create--country"
+                    id="create--country"
+                    class="form-control"
+                    (change)="logCountry(userCuntry)"
+                />
+                <div
+                    class="alert alert-danger"
+                    *ngIf="userName.touched && !userName.valid"
+                >
+                    Es necesario escribir tu Pais
+                </div>
+            </div>
+            <div
+                class="alert alert-danger"
+                *ngIf="userName.touched && !userName.valid"
+            >
+                Es necesario escribir tu Nombre
+            </div>
+        </div>
+        <div class="form-group">
             <span>Intereses</span>
-            <button>Naturaleza</button> <button>Programación</button>
-            <button>Leer</button> <button>Juegos de mesa</button>
-            <button>Karaoke</button> <button>Netflix</button>
+            <div *ngFor="let topic of topicsList">
+                <input
+                    ngModel
+                    #userTopic="ngModel"
+                    type="checkbox"
+                    id="topic-{{ topic }}"
+                    name="{{ topic }}"
+                    value="{{ topic }}"
+                    (change)="logTopic(userTopic)"
+                />
+                <label for="topic-{{ topic }}"> {{ topic }}</label>
+            </div>
         </div>
         <div class="form-group">
             <label for="create--text">Descripción</label>
             <textarea
+                required
+                ngModel
+                #userBio="ngModel"
                 name="create--text"
                 id="create--text"
                 cols="30"
                 rows="10"
+                (change)="logBio(userBio)"
             ></textarea>
         </div>
         <button class="btn btn-primary" (click)="log()">Continuar</button>

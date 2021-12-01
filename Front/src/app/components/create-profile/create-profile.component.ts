@@ -8,6 +8,15 @@ import { User } from '../../models/user';
 })
 export class CreateProfileComponent implements OnInit {
     user: User = {} as User;
+    topicsList = [
+        'Naturaleza',
+        'Ir de cañas',
+        'Juegos de mesa',
+        'Bailar',
+        'Mascotas',
+        'Picnic',
+        'Idiomas',
+    ];
 
     constructor() {}
 
@@ -20,6 +29,18 @@ export class CreateProfileComponent implements OnInit {
     }
     logGender(x: any) {
         this.user.gender = x.value;
+    }
+    logCity(x: any) {
+        this.user.city = x.value;
+    }
+    logCountry(x: any) {
+        this.user.country = x.value;
+    }
+    logTopic(x: any) {
+        if (x.value) {
+            this.user.topics.push(x.name);
+        }
+        console.log(this.user.topics);
     }
     logBio(x: any) {
         this.user.bio = x.value;
