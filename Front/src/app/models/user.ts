@@ -1,10 +1,10 @@
 export interface User {
     id: number;
     name: string;
-    age: string;
+    dob: Date;
     gender: string;
     city: string;
     country: string;
-    topics: [];
+    topics: string[];
     bio: string;
 }

@@ -8,6 +8,8 @@ import { User } from '../../models/user';
 })
 export class CreateProfileComponent implements OnInit {
     user: User = {} as User;
+    iot: number = -1;
+
     topicsList = [
         'Naturaleza',
         'Ir de cañas',
@@ -17,15 +19,18 @@ export class CreateProfileComponent implements OnInit {
         'Picnic',
         'Idiomas',
     ];
+    test = [];
 
-    constructor() {}
+    constructor() {
+        this.user.topics = [];
+    }
 
     // Recogide de información de los inputs
     logName(x: any) {
         this.user.name = x.value;
     }
     logAge(x: any) {
-        this.user.age = x.value;
+        this.user.dob = x.value;
     }
     logGender(x: any) {
         this.user.gender = x.value;
@@ -37,8 +42,12 @@ export class CreateProfileComponent implements OnInit {
         this.user.country = x.value;
     }
     logTopic(x: any) {
+        console.log('x.name', x.name);
         if (x.value) {
             this.user.topics.push(x.name);
+        } else {
+            this.iot = this.user.topics.indexOf(x.name);
+            this.user.topics.splice(this.iot, 1);
         }
         console.log(this.user.topics);
     }
