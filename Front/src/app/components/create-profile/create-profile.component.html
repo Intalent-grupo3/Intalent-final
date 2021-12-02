@@ -1,5 +1,12 @@
 <div class="container create">
-    <form class="create--form">
+    <header class="header">
+        <h1 class="title">Lucatinder</h1>
+        <div class="logoBox">
+            <img src="../../../assets/logo-white.png" alt="LucaTinder" />
+        </div>
+    </header>
+
+    <form class="form">
         <div class="form-group">
             <label for="create--name">Nombre</label>
             <input
@@ -61,7 +68,7 @@
             />
             <div
                 class="alert alert-danger"
-                *ngIf="userName.touched && !userName.valid"
+                *ngIf="userCity.touched && !userCity.valid"
             >
                 Es necesario escribir tu Ciudad
             </div>
@@ -136,7 +143,7 @@
                 (change)="logBio(userBio)"
             ></textarea>
         </div>
-        <button class="btn btn-primary" (click)="log()">Continuar</button>
+        <button class="submit" (click)="log()">Continuar</button>
         <!-- <input type="submit" value="Continuar" routerLink="../main" /> -->
     </form>
 </div>

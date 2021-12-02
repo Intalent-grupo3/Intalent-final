@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, NgZone } from '@angular/core';
-import { trigger, keyframes, animate, transition } from "@angular/animations";
+import { trigger, keyframes, animate, transition } from '@angular/animations';
 import * as kf from './keyframes';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -7,9 +7,7 @@ import { Subject } from 'rxjs';
 import { Persona } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 @Component({
     selector: 'app-card',
@@ -26,59 +24,51 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
     ],
 })
 export class CardComponent {
-  users: Persona = {} as Persona;
-  loginId: any;
-  userId: any;
-  auth=getAuth();
-  public index = 0;
-  state:any;
-  @Input()
-  parentSubject!: Subject<any>;
+    users: Persona = {} as Persona;
+    loginId: any;
+    userId: any;
+    auth = getAuth();
+    public index = 0;
+    state: any;
+    @Input()
+    parentSubject!: Subject<any>;
 
-
-
-  animationState!: string;
-  constructor(
-    private crudService: CrudServicesService,
-    private router: Router,
-    private ngZone: NgZone,
-    public userFirebase: AuthService,
-    public firebase: AngularFireAuth,
-    
+    animationState!: string;
+    constructor(
+        private crudService: CrudServicesService,
+        private router: Router,
+        private ngZone: NgZone,
+        public userFirebase: AuthService,
+        public firebase: AngularFireAuth
     ) {
-        this.loginId=getAuth().currentUser?.uid;
-      console.log('le llega este id para generar la persona aleatoria'+this.loginId);
-        crudService.getRandomUser(this.loginId).subscribe(res => {
-          console.log(res)
-          this.users =res;
+        this.loginId = getAuth().currentUser?.uid;
+        console.log(
+            'le llega este id para generar la persona aleatoria' + this.loginId
+        );
+        crudService.getRandomUser(this.loginId).subscribe((res) => {
+            console.log(res);
+            this.users = res;
         });
-      }
+    }
 
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
             this.startAnimation(event);
         });
-
     }
 
-  startAnimation(state:any) {
-    if (!this.animationState) {
-      this.animationState = state;
+    startAnimation(state: any) {
+        if (!this.animationState) {
+            this.animationState = state;
+        }
     }
-  }
 
-  resetAnimationState(state:any) {
-    this.animationState = '';
-    this.index++;
-  }
+    resetAnimationState(state: any) {
+        this.animationState = '';
+        this.index++;
+    }
 
-
-  ngOnDestroy() {
-    this.parentSubject.unsubscribe();
-    // this.crudService.getRandomUser(this.loginId).subscribe(res => {
-    //   console.log(res)
-    //   this.users =res;
-    // });
-  }
-
+    ngOnDestroy() {
+        this.parentSubject.unsubscribe();
+    }
 }

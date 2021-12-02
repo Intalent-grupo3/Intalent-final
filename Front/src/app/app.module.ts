@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth/';
 import { environment } from 'src/environments/environment';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,30 +20,28 @@ import { InComponent } from './components/in/in.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SigninComponent,
-    ProfileComponent,
-    NavbarComponent,
-    MainComponent,
-    CardComponent,
-    CreateProfileComponent,
-    InComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule, 
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule, BrowserAnimationsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-
-
-     
-
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        SigninComponent,
+        ProfileComponent,
+        NavbarComponent,
+        MainComponent,
+        CardComponent,
+        CreateProfileComponent,
+        InComponent,
+        EditProfileComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        BrowserAnimationsModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
