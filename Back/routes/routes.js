@@ -25,5 +25,41 @@ router.route('/crearperfil').post((req,res,next)=>{
         }
     })
 })
+//pedir la info de nuestro perfil
+router.route('/perfil/:id').get((req, res) => {
+    Persona.findById(req.params.id, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+})
+
+//borrar perfil
+router.route('/borrar-perfil/:id').delete((req, res, next) => {
+    Persona.findOneAndRemove({loginId:req.params.id}, (error, data) => {
+        if (error) {
+            return next(error);
+        } else {
+            res.status(200).json({
+                msg: data
+            })
+        }
+    })
+})
+
+//updatear la info del perfil
+router.route('/actualizar-perfil/:id').put((req,res,next)=>{
+    Persona.findOneAndUpdate({loginId:req.params.id},{$set: req.body},(error,data)=>{
+        if (error) {
+            return next(error);
+            console.log(error)
+        } else {
+            res.json(data)
+            console.log('Perfil actualizado correctamente!')
+        }
+    })
+})
 
 export default router;

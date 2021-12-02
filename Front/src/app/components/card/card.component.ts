@@ -20,6 +20,7 @@ import { Subject } from 'rxjs';
     ],
 })
 export class CardComponent {
+
     public users: User[] = data;
     public index = 0;
     @Input()
@@ -32,6 +33,7 @@ export class CardComponent {
         this.parentSubject.subscribe((event) => {
             this.startAnimation(event);
         });
+
     }
 
     startAnimation(state) {
@@ -45,7 +47,9 @@ export class CardComponent {
         this.index++;
     }
 
+
     ngOnDestroy() {
         this.parentSubject.unsubscribe();
     }
+
 }
