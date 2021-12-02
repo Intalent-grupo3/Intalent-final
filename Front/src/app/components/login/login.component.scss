@@ -1,4 +1,5 @@
 .container {
+    height: 100%;
     background: linear-gradient(
         90deg,
         var(--color-primary) 10%,
@@ -13,6 +14,9 @@
         align-items: center;
         padding-top: 5vh;
         color: var(--color-white);
+        background: none;
+        box-shadow: none;
+        position: static;
 
         & .logoBox {
             width: 40vw;

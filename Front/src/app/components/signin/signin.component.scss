@@ -1,18 +1,22 @@
-.signin {
+.container {
+    height: 100%;
     background: linear-gradient(
-        90deg,
+        140deg,
         var(--color-secondary-1) 10%,
         var(--color-primary) 100%
     );
 }
 
-.notLogged {
+.signin {
     & .header {
         display: flex;
         flex-direction: column;
         align-items: center;
         padding-top: 5vh;
         color: var(--color-white);
+        background: none;
+        box-shadow: none;
+        position: static;
 
         & .logoBox {
             width: 40vw;

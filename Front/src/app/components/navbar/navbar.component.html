@@ -1,20 +1,16 @@
-<div class="container">
-    <nav class="navbar">
-        <ul class="navbar--list">
-            <li>
-                <a href="#" class="navbar--list__item">Matches</a>
-            </li>
-            <li>
-                <a routerLink="../app" class="navbar--list__item">Home</a>
-            </li>
-            <li>
-                <a routerLink="/profile" class="navbar--list__item">Perfil</a>
-            </li>
-            <li>
-                <button (click)="auth.logout()" routerLink="../login">
-                    Salir
-                </button>
-            </li>
-        </ul>
-    </nav>
-</div>
+<nav class="navbar container">
+    <ul class="navbar--list">
+        <li>
+            <a href="#" class="navbar--list__item">Matches</a>
+        </li>
+        <li>
+            <a routerLink="../app" class="navbar--list__item">Home</a>
+        </li>
+        <li>
+            <a routerLink="/profile" class="navbar--list__item">Perfil</a>
+        </li>
+        <li>
+            <button (click)="auth.logout()" routerLink="../login">Salir</button>
+        </li>
+    </ul>
+</nav>

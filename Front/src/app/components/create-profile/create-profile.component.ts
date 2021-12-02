@@ -1,4 +1,4 @@
-import { Component, OnInit,NgZone } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 import { Router } from '@angular/router';
 import { Persona } from '../../models/user';
@@ -9,7 +9,7 @@ import { Persona } from '../../models/user';
     styleUrls: ['./create-profile.component.scss'],
 })
 export class CreateProfileComponent implements OnInit {
-    persona: Persona = {} as Persona;
+    public user: Persona = {} as Persona;
     loginId: any;
     topicsList = [
         'Naturaleza',
@@ -24,51 +24,50 @@ export class CreateProfileComponent implements OnInit {
     constructor(
         private crudService: CrudServicesService,
         private router: Router,
-        private ngZone: NgZone,
+        private ngZone: NgZone
     ) {
-        this.loginId//=parámetro que pasa Yelder
-        
+        this.loginId; //=parámetro que pasa Yelder
     }
 
     // Recogide de información de los inputs
     logName(x: any) {
-        this.persona.name = x.value;
+        this.user.name = x.value;
     }
     logAge(x: any) {
-        this.persona.dob = x.value;
+        this.user.dob = x.value;
     }
     logGender(x: any) {
-        this.persona.gender = x.value;
+        this.user.gender = x.value;
     }
     logCity(x: any) {
-        this.persona.city = x.value;
+        this.user.city = x.value;
     }
     logCountry(x: any) {
-        this.persona.country = x.value;
+        this.user.country = x.value;
     }
     logTopic(x: any) {
         if (x.value) {
-            this.persona.topics.push(x.name);
+            this.user.topics.push(x.name);
         }
-        console.log(this.persona.topics);
+        console.log(this.user.topics);
     }
     logBio(x: any) {
-        this.persona.bio = x.value;
+        this.user.bio = x.value;
     }
-    
+
     // Uso conjunto de los datos guardados en el objeto
-    log():any {
-        this.persona.loginId=this.loginId;
-        console.log(this.persona);
-        this.crudService.addnewuser(this.persona)
-        .subscribe({next:(any)=>{
-            console.log('Data added successfully!')
-            this.ngZone.run(() => this.router.navigateByUrl('/main'))}
-          , error:(err)=>{
-            console.log(err);}
-      })
+    log(): any {
+        this.user.loginId = this.loginId;
+        console.log(this.user);
+        this.crudService.addnewuser(this.user).subscribe({
+            next: (any) => {
+                console.log('Data added successfully!');
+                this.ngZone.run(() => this.router.navigateByUrl('/main'));
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
     }
-    ngOnInit() { }
-
-
+    ngOnInit() {}
 }

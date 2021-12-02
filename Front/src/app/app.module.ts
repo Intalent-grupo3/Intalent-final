@@ -18,6 +18,7 @@ import { CardComponent } from './components/card/card.component';
 import { CreateProfileComponent } from './components/create-profile/create-profile.component';
 import { InComponent } from './components/in/in.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
         CreateProfileComponent,
         InComponent,
         EditProfileComponent,
+        HeaderComponent,
     ],
     imports: [
         BrowserModule,

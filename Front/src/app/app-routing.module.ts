@@ -31,10 +31,7 @@ const routes: Routes = [
                 path: '',
                 component: MainComponent,
             },
-            // {
-            //   path: 'contacts',
-            //   component: ContactsComponent,
-            // },
+
             {
                 path: 'profile',
                 component: ProfileComponent,

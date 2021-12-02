@@ -1,6 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Persona } from 'src/app/models/user';
+import { CreateProfileComponent } from 'src/app/components/create-profile/create-profile.component';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class ProfileComponent implements OnInit {
     loginId: any;
     persona: Persona = {} as Persona;
     constructor(
+        public User: CreateProfileComponent,
         private crudService: CrudServicesService,
         private router: Router,
         private ngZone: NgZone
