@@ -1,1 +1,11 @@
-<p>card works!</p>
+<div class="tphoto"
+[@cardAnimator]="animationState"
+(@cardAnimator.done)="resetAnimationState($event)"
+(swipeleft)='startAnimation("swipeleft")' 
+(swiperight)='startAnimation("swiperight")'
+>
+<img [src]="users.image" title="tphoto" alt="Tinder Photo" />
+<div class="tname">{{users.name}}, <span class="age">{{users.dob}}</span></div>
+<div class="tinfo"><i class="fa fa-book" aria-hidden="true"> 0</i><i class="fa fa-users" aria-hidden="true"> 0</i></div>
+</div>
+

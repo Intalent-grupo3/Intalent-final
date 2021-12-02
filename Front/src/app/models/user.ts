@@ -1,5 +1,5 @@
-export interface User {
-    id: number;
+export interface Persona {
+    loginId: String;
     name: string;
     dob: Date;
     gender: string;

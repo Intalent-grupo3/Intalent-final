@@ -95,7 +95,11 @@
                 class="form-control"
                 (change)="logImage($event)"
             />
-            <img [src]="this.user.image" height="200" *ngIf="this.user.image" />
+            <img
+                [src]="this.persona.image"
+                height="200"
+                *ngIf="this.persona.image"
+            />
             <div
                 class="alert alert-danger"
                 *ngIf="userName.touched && !userName.valid"

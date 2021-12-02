@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 //función que genera las personas aleatorias
 import botsRouter from './routes/routes.js';
