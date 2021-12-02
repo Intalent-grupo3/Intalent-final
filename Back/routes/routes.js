@@ -26,7 +26,7 @@ router.route('/crearperfil').post((req,res,next)=>{
     })
 })
 //pedir la info de nuestro perfil
-router.route('/perfil/:id').get((req, res) => {
+router.route('/perfil/:id').get((req, res,next) => {
     Persona.findById(req.params.id, (error, data) => {
         if (error) {
             return next(error)
@@ -58,6 +58,24 @@ router.route('/actualizar-perfil/:id').put((req,res,next)=>{
         } else {
             res.json(data)
             console.log('Perfil actualizado correctamente!')
+        }
+    })
+})
+
+//traer perfil aleatorio
+router.route('/perfil-aleatorio/:id').get((req,res,next)=>{
+    let user=Persona.findById(req.params.id,'likes dislikes', (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+    Persona.findOne({$and:[{_id:{$nin :[user.likes]}},{_id:{$nin:[user.dislikes]}}]}, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
         }
     })
 })

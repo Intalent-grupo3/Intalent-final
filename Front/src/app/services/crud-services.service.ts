@@ -51,6 +51,16 @@ export class CrudServicesService {
       )
   }
 
+  //traer persona aleatoria
+  getRandomUser(loginId:any):Observable<any>{
+    let API_URL = `${this.REST_API}/perfil-aleatorio/${loginId}`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+     .pipe(map((res: any) => {
+         return res || {}
+       }),
+       catchError(this.handleError)
+     )
+  }
   //tratamiento de errores
    handleError(error: HttpErrorResponse) {
     let errorMessage = '';
