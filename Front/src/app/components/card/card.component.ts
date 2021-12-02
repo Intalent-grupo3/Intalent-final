@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { trigger, keyframes, animate, transition } from '@angular/animations';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
+import { trigger, keyframes, animate, transition } from "@angular/animations";
 import * as kf from './keyframes';
-import { User } from './user';
-import data from './users.json';
+import { CrudServicesService } from 'src/app/services/crud-services.service';
+
 import { Subject } from 'rxjs';
+import { Persona } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-card',
@@ -20,14 +22,25 @@ import { Subject } from 'rxjs';
     ],
 })
 export class CardComponent {
+  persona: Persona = {} as Persona;
+  loginId: any;
+  public users: any;
+  public index = 0;
+  state:any;
+  @Input()
+  parentSubject!: Subject<any>;
 
-    public users: User[] = data;
-    public index = 0;
-    @Input()
-    parentSubject!: Subject<any>;
 
-    animationState!: string;
-    constructor() {}
+
+  animationState!: string;
+  constructor(
+    private crudService: CrudServicesService,
+    private router: Router,
+    private ngZone: NgZone
+  ) {
+    this.loginId//hay que traerlo de yelder
+    this.users=crudService.getRandomUser(this.loginId);
+   }
 
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
@@ -36,20 +49,21 @@ export class CardComponent {
 
     }
 
-    startAnimation(state) {
-        if (!this.animationState) {
-            this.animationState = state;
-        }
+  startAnimation(state:any) {
+    if (!this.animationState) {
+      this.animationState = state;
     }
+  }
 
-    resetAnimationState(state) {
-        this.animationState = '';
-        this.index++;
-    }
+  resetAnimationState(state:any) {
+    this.animationState = '';
+    this.index++;
+  }
 
 
-    ngOnDestroy() {
-        this.parentSubject.unsubscribe();
-    }
+  ngOnDestroy() {
+    this.parentSubject.unsubscribe();
+    this.users=this.crudService.getRandomUser(this.loginId);
+  }
 
 }
