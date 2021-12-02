@@ -24,17 +24,13 @@ const routes: Routes = [
         component: CreateProfileComponent,
     },
     {
-        path: 'main',
+        path: 'account',
         component: InComponent,
         children: [
             {
-                path: '',
+                path: 'view',
                 component: MainComponent,
             },
-            // {
-            //   path: 'contacts',
-            //   component: ContactsComponent,
-            // },
             {
                 path: 'profile',
                 component: ProfileComponent,
