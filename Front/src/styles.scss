@@ -4,15 +4,13 @@
     --color-primary: #4a1c3e;
     --color-primary-light: #fa91de;
     --color-primary-dark: #25031c;
-    --color-secondary: #fbcc4c;
     --color-secondary-1: #f66159;
-    --color-secondary-2: #f52778;
-    --color-gradient: linear-gradient(
-        90deg,
-        var(--color-primary) 10%,
-        var(--color-secondary) 100%
-    );
+    --color-secondary-2: #b40048;
     --color-white: rgb(250, 250, 250);
+    --color-gray: rgb(218, 218, 218);
+    --color-gray-t: rgba(218, 218, 218, 0.2);
+    --color-gray-dark: rgba(99, 99, 99, 0.5);
+    --color-gray-dark-t: rgb(63 63 63 / 29%);
 }
 
 html,
@@ -33,10 +31,35 @@ img {
     width: 100%;
 }
 
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .link {
     color: var(--color-white);
 
     &:hover {
         color: var(--color-primary);
     }
+}
+
+.bold {
+    font-weight: 700;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.alert {
+    color: var(--color-secondary-1);
+    background-color: var(--color-gray-dark-t);
+    border: 2px solid var(--color-secondary-1);
+    border-top: 0;
+    border-radius: 0 0 10px 10px;
+    padding: 0.3em;
 }

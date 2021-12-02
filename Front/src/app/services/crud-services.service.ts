@@ -23,8 +23,45 @@ export class CrudServicesService {
       return this.httpClient.post(API_URL, data);
    }
 
-  //  //traer perfil cuando se hace login
-  //  showuserprofile(id:any):Observable<any>{
-  //    let API_URL = `${this.REST_API}/perfil`;
-  //  }
+    //traer perfil cuando se hace login
+   showuserprofile(loginId:any):Observable<any>{
+     let API_URL = `${this.REST_API}/perfil/${loginId}`;
+     return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+          return res || {}
+        }),
+        catchError(this.handleError)
+      )
+   }
+
+    // Borrar el perfil de usuario
+  deleteUserProfile(loginId:any): Observable<any> {
+    let API_URL = `${this.REST_API}/borrar-perfil/${loginId}`;
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders}).pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // Editar perfil del usuario
+  updateUserProfile(loginId:any,data:any): Observable<any>{
+    let API_URL = `${this.REST_API}/borrar-perfil/${loginId}`;
+    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  //tratamiento de errores
+   handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Handle client error
+      errorMessage = error.error.message;
+    } else {
+      // Handle server error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(() => new Error(errorMessage));
+  }
 }

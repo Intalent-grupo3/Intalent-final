@@ -1,12 +1,12 @@
-<div class="container login">
-    <header class="login-header">
+<div class="container login notLogged">
+    <header class="header">
         <h1 class="title">Lucatinder</h1>
         <div class="logoBox">
             <img src="../../../assets/logo-white.png" alt="LucaTinder" />
         </div>
         Entra y encuentra a quien quieres conocer
     </header>
-    <form class="login--form">
+    <form class="form">
         <div class="form-group">
             <label for="login--mail">Correo</label>
             <input
@@ -29,17 +29,9 @@
                 class="form-control"
             />
         </div>
-        <button
-            (click)="login(user.value, pass.value)"
-            *ngIf="this.userFirebase"
-            routerLink="../main"
-        >
+        <button class="submit" (click)="login(user.value, pass.value)">
             Entrar
         </button>
-
-        <!-- <button (click)="login(user.value, pass.value)" routerLink="../main">
-            Entrar
-        </button> -->
     </form>
     <a routerLink="../signin" class="link">No tengo cuenta</a>
 </div>

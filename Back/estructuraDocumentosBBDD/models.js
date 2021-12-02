@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 var repSchema = mongoose.Schema({
-    id:String,
+    loginId:String,
     gender: String,
     name: String,
     city: String,
@@ -15,8 +15,9 @@ var repSchema = mongoose.Schema({
     topics:[],
 })
 export var Persona = mongoose.model('Persona', repSchema);
-export function assignDataValue(gender, name,city,country,dob,image,bio,topics) {
+export function assignDataValue(loginId,gender, name,city,country,dob,image,topics) {
     var upData = new Persona()
+    upData.loginId=loginId;
     upData.gender = gender;
     upData.name = name;
     upData.city = city;

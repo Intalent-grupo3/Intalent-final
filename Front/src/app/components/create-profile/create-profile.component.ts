@@ -10,6 +10,7 @@ import { Persona } from '../../models/user';
 })
 export class CreateProfileComponent implements OnInit {
     persona: Persona = {} as Persona;
+    loginId: any;
     topicsList = [
         'Naturaleza',
         'Ir de cañas',
@@ -24,7 +25,10 @@ export class CreateProfileComponent implements OnInit {
         private crudService: CrudServicesService,
         private router: Router,
         private ngZone: NgZone,
-    ) {}
+    ) {
+        this.loginId//=parámetro que pasa Yelder
+        
+    }
 
     // Recogide de información de los inputs
     logName(x: any) {
@@ -51,23 +55,20 @@ export class CreateProfileComponent implements OnInit {
     logBio(x: any) {
         this.persona.bio = x.value;
     }
+    
     // Uso conjunto de los datos guardados en el objeto
     log():any {
+        this.persona.loginId=this.loginId;
         console.log(this.persona);
         this.crudService.addnewuser(this.persona)
-        
         .subscribe({next:(any)=>{
             console.log('Data added successfully!')
-            this.ngZone.run(() => this.router.navigateByUrl('/'))}
+            this.ngZone.run(() => this.router.navigateByUrl('/main'))}
           , error:(err)=>{
             console.log(err);}
       })
     }
     ngOnInit() { }
-    // crearusuario(){
-    //     addnewpersona()
-
-    // }
 
 
 }
