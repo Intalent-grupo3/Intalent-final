@@ -1,17 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-    --color-primary: #1b76be;
-    --color-primary-light: #9dd3ff;
-    --color-primary-dark: #0b4779;
+    --color-primary: #4a1c3e;
+    --color-primary-light: #fa91de;
+    --color-primary-dark: #25031c;
+    --color-secondary: #fbcc4c;
     --color-secondary-1: #f66159;
     --color-secondary-2: #f52778;
     --color-gradient: linear-gradient(
         90deg,
-        rgba(246, 97, 89, 1) 0%,
-        rgba(245, 39, 120, 1) 100%
+        var(--color-primary) 10%,
+        var(--color-secondary) 100%
     );
-    --color-white: rgb(243, 243, 243);
+    --color-white: rgb(250, 250, 250);
 }
 
 html,
@@ -26,4 +27,16 @@ body {
 
 h1 {
     display: none;
+}
+
+img {
+    width: 100%;
+}
+
+.link {
+    color: var(--color-white);
+
+    &:hover {
+        color: var(--color-primary);
+    }
 }
