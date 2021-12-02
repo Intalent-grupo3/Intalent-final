@@ -1,3 +1,23 @@
-html{
-background-color: rgb(240, 240, 240);
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --color-primary: #1b76be;
+    --color-primary-light: #9dd3ff;
+    --color-primary-dark: #0b4779;
+    --color-secondary-1: #f66159;
+    --color-secondary-2: #f52778;
+    --color-gradient: linear-gradient(
+        90deg,
+        rgba(246, 97, 89, 1) 0%,
+        rgba(245, 39, 120, 1) 100%
+    );
+    --color-white: rgb(243, 243, 243);
 }
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-white);
+}
+
