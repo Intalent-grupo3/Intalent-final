@@ -1,20 +1,15 @@
-.tbg {
-    /* prevents horizontal scroll bar appearing  */
-    overflow-x: hidden;
-}
 
-/************************
-  Tinder Template by Miami
-  ************************/
 .tbg {
+    overflow-x: hidden;
     height: 720px;
     width: 400px;
     background-color: #fff;
     margin: 0 auto;
-    border: 1px solid #c0c0c0;
+    
 }
 .tbgwrap {
     padding: 10px;
+    
 }
 .theader {
     height: 65px;
@@ -61,8 +56,9 @@
 }
 .tno i {
     color: #ff695b;
-    font-size: 80px;
+    font-size: 4rem;
     padding: 17px 28px;
+    font-style: normal;
 }
 .ti {
     background-color: #fff;
@@ -99,8 +95,8 @@
 }
 .tyes i {
     color: #5de19c;
-    font-size: 60px;
-    padding: 35px 30px;
+    font-size: 6rem;
+    padding:  1rem;
 }
 .credit {
     width: 400px;
