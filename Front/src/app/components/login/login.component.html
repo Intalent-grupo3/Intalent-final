@@ -1,18 +1,38 @@
 <div class="container login">
     <form class="login--form">
-        <input
-            type="text"
-            name="login--name"
-            id="login--name"
-            class="login--input"
-        />
-        <input
-            type="password"
-            name="login--pw"
-            id="login--pw"
-            class="login--input"
-        />
-        <input type="submit" value="{{ submitValue }}" routerLink="../main" />
+        <div class="form-goup">
+            <label for="login--mail">Correo</label>
+            <input
+                required
+                #user
+                type="text"
+                name="login--mail"
+                id="login--mail"
+                class="form-control"
+            />
+        </div>
+        <div class="form-group">
+            <label for="login--pw">Contraseña</label>
+            <input
+                required
+                #pass
+                type="password"
+                name="login--pw"
+                id="login--pw"
+                class="form-control"
+            />
+        </div>
+        <button
+            (click)="login(user.value, pass.value)"
+            *ngIf="this.userFirebase"
+            routerLink="../main"
+        >
+            Entrar
+        </button>
+
+        <!-- <button (click)="login(user.value, pass.value)" routerLink="../main">
+            Entrar
+        </button> -->
     </form>
     <a routerLink="../signin" class="link">No tengo cuenta</a>
 </div>
