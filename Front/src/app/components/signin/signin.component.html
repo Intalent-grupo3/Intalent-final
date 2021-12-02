@@ -2,29 +2,14 @@
     <form class="signin--form">
         <div class="form-goup">
             <label for="signin--mail">Correo</label>
-            <input
-                #user
-                type="text"
-                name="signin--mail"
-                id="signin--mail"
-                class="form-control"
-            />
+            <input #user type="text" name="signin--mail" id="signin--mail" class="form-control" />
         </div>
         <div class="form-group">
             <label for="signin--pw">Contraseña</label>
-            <input
-                #pass
-                type="password"
-                name="signin--pw"
-                id="signin--pw"
-                class="form-control"
-            />
+            <input #pass type="password" name="signin--pw" id="signin--pw" class="form-control" />
         </div>
 
-        <button
-            (click)="registrar(user.value, pass.value)"
-            routerLink="../createProfile"
-        >
+        <button (click)="registrar(user.value, pass.value)">
             Registrarme
         </button>
     </form>
