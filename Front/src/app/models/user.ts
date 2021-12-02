@@ -1,5 +1,5 @@
 export interface Persona {
-    loginId: number;
+    loginId: String;
     name: string;
     dob: Date;
     gender: string;
@@ -7,4 +7,5 @@ export interface Persona {
     country: string;
     topics: String[];
     bio: string;
+    image:string;
 }

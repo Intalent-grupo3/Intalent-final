@@ -54,7 +54,8 @@ export class CrudServicesService {
   //traer persona aleatoria
   getRandomUser(loginId:any):Observable<any>{
     let API_URL = `${this.REST_API}/perfil-aleatorio/${loginId}`;
-    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+    const personarandom=this.httpClient.get(API_URL, { headers: this.httpHeaders })
+    return personarandom
      .pipe(map((res: any) => {
          return res || {}
        }),

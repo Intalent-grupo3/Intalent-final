@@ -1,7 +1,9 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router,ActivatedRoute } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+import { getAuth } from 'firebase/auth';
 import { Persona } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 
 @Component({
@@ -14,11 +16,12 @@ export class ProfileComponent implements OnInit {
   persona: Persona = {} as Persona;
   constructor(
     private crudService: CrudServicesService,
-    private formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-  ) { 
-    this.loginId//aquí aparece el id que hemos guardado del login de yelder.
+    public userFirebase: AuthService,
+    public firebase: AngularFireAuth
+    ) {
+      this.loginId=getAuth().currentUser?.uid;
 
   }
 

@@ -2,6 +2,8 @@ import { Component, OnInit,NgZone } from '@angular/core';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 import { Router } from '@angular/router';
 import { Persona } from '../../models/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
     selector: 'app-create-profile',
@@ -11,6 +13,7 @@ import { Persona } from '../../models/user';
 export class CreateProfileComponent implements OnInit {
     persona: Persona = {} as Persona;
     loginId: any;
+    userId:any;
     topicsList = [
         'Naturaleza',
         'Ir de cañas',
@@ -25,8 +28,12 @@ export class CreateProfileComponent implements OnInit {
         private crudService: CrudServicesService,
         private router: Router,
         private ngZone: NgZone,
+        public userFirebase: AuthService,
+        public firebase: AngularFireAuth
     ) {
-        this.loginId//=parámetro que pasa Yelder
+        firebase.authState.subscribe((user) => {
+            this.userId = String(user?.uid);
+        });
         
     }
 
@@ -58,8 +65,7 @@ export class CreateProfileComponent implements OnInit {
     
     // Uso conjunto de los datos guardados en el objeto
     log():any {
-        this.persona.loginId=this.loginId;
-        console.log(this.persona);
+        this.persona.loginId=this.userId;
         this.crudService.addnewuser(this.persona)
         .subscribe({next:(any)=>{
             console.log('Data added successfully!')
@@ -67,7 +73,9 @@ export class CreateProfileComponent implements OnInit {
           , error:(err)=>{
             console.log(err);}
       })
+      console.log(this.persona);
     }
+    
     ngOnInit() { }
 
 

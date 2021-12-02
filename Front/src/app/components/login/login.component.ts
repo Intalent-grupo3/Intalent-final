@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    async login(user: string, pass: string) {
+    async logIn(user: string, pass: string) {
         try {
             await this.auth.login(user, pass);
             this.router.navigateByUrl('/main')}
