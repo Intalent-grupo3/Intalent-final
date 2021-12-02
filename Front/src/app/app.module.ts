@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -16,6 +16,7 @@ import { InComponent } from './components/in/in.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
+
     declarations: [
         AppComponent,
         LoginComponent,
@@ -28,7 +29,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
         InComponent,
         EditProfileComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, FormsModule,HttpClientModule],
+    imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, BrowserAnimationsModule],
     providers: [],
     bootstrap: [AppComponent],
 })

@@ -1,22 +1,56 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router,ActivatedRoute } from '@angular/router';
-import { Persona } from 'src/app/models/user';
-import { CrudServicesService } from 'src/app/services/crud-services.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { trigger, keyframes, animate, transition } from "@angular/animations";
+import * as kf from './keyframes';
+import { User } from './user';
+import data from './users.json';
+import { Subject } from 'rxjs';
+
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
-})
-export class CardComponent implements OnInit {
-  persona: Persona = {} as Persona;
-  constructor(
-    private crudService: CrudServicesService,
-    private router: Router,
-    private ngZone: NgZone) {
-     }
+  styleUrls: ['./card.component.css'],
+  animations: [
+    trigger('cardAnimator', [
+      transition('* => swiperight', animate(750, keyframes(kf.swiperight))),
+      transition('* => swipeleft', animate(750, keyframes(kf.swipeleft)))
+    ])
+  ]
 
-  ngOnInit(): void {
+})
+export class CardComponent {
+
+  public users: User[] = data;
+  public index = 0;
+  @Input()
+  parentSubject!: Subject<any>;
+
+
+
+  animationState!: string;
+  constructor() { }
+
+
+  ngOnInit() {
+    this.parentSubject.subscribe(event => {
+      this.startAnimation(event)
+    });
   }
-  
+
+  startAnimation(state) {
+    if (!this.animationState) {
+      this.animationState = state;
+    }
+  }
+
+  resetAnimationState(state) {
+    this.animationState = '';
+    this.index++;
+  }
+
+
+  ngOnDestroy() {
+    this.parentSubject.unsubscribe();
+  }
+
 }
