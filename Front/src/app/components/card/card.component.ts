@@ -30,6 +30,7 @@ export class CardComponent {
   animationState!: string;
   constructor() { }
 
+
   ngOnInit() {
     this.parentSubject.subscribe(event => {
       this.startAnimation(event)
