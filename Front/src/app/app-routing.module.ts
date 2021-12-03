@@ -4,10 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 //Components (to route) List
 import { LoginComponent } from './components/login/login.component';
 import { SigninComponent } from './components/signin/signin.component';
-import { MainComponent } from './components/main/main.component';
 import { CreateProfileComponent } from './components/create-profile/create-profile.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { InComponent } from './components/in/in.component';
+
+import { AccountComponent } from './components/account/account.component';
+import { ProfileComponent } from './components/account/profile/profile.component';
+import { ViewComponent } from './components/account/view/view.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -20,22 +21,16 @@ const routes: Routes = [
         component: SigninComponent,
     },
     {
-        path: 'createProfile',
+        path: 'create-profile',
         component: CreateProfileComponent,
     },
     {
-        path: 'main',
-        component: InComponent,
+        path: 'account',
+        component: AccountComponent,
         children: [
-            {
-                path: '',
-                component: MainComponent,
-            },
-
-            {
-                path: 'profile',
-                component: ProfileComponent,
-            },
+            { path: '', pathMatch: 'full', redirectTo: 'view' },
+            { path: 'view', component: ViewComponent },
+            { path: 'profile', component: ProfileComponent },
         ],
     },
 ];

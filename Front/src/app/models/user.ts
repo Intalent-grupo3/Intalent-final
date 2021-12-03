@@ -1,10 +1,11 @@
 export interface Persona {
-    loginId: number;
+    loginId: String;
     name: string;
     dob: Date;
     gender: string;
     city: string;
     country: string;
-    topics: String[];
+    topics: string[];
     bio: string;
+    image: any;
 }

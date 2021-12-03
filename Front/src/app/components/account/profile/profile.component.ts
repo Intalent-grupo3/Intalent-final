@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
     loginId: any;
     persona: Persona = {} as Persona;
     constructor(
-        public User: CreateProfileComponent,
+        // public User: CreateProfileComponent,
         private crudService: CrudServicesService,
         private router: Router,
         private ngZone: NgZone

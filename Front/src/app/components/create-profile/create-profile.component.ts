@@ -2,6 +2,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 import { Router } from '@angular/router';
 import { Persona } from '../../models/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
     selector: 'app-create-profile',
@@ -9,8 +11,9 @@ import { Persona } from '../../models/user';
     styleUrls: ['./create-profile.component.scss'],
 })
 export class CreateProfileComponent implements OnInit {
-    public user: Persona = {} as Persona;
+    public persona: Persona = {} as Persona;
     loginId: any;
+    userId: any;
     topicsList = [
         'Naturaleza',
         'Ir de cañas',
@@ -20,49 +23,63 @@ export class CreateProfileComponent implements OnInit {
         'Picnic',
         'Idiomas',
     ];
+    test = [];
 
     constructor(
         private crudService: CrudServicesService,
         private router: Router,
-        private ngZone: NgZone
+        private ngZone: NgZone,
+        public userFirebase: AuthService,
+        public firebase: AngularFireAuth
     ) {
-        this.loginId; //=parámetro que pasa Yelder
+        firebase.authState.subscribe((user) => {
+            this.userId = String(user?.uid);
+        });
     }
 
     // Recogide de información de los inputs
     logName(x: any) {
-        this.user.name = x.value;
+        this.persona.name = x.value;
     }
     logAge(x: any) {
-        this.user.dob = x.value;
+        this.persona.dob = x.value;
     }
     logGender(x: any) {
-        this.user.gender = x.value;
+        this.persona.gender = x.value;
     }
     logCity(x: any) {
-        this.user.city = x.value;
+        this.persona.city = x.value;
     }
     logCountry(x: any) {
-        this.user.country = x.value;
+        this.persona.country = x.value;
     }
+    logImage(event: any) {
+        let reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = () => {
+            this.persona.image = reader.result;
+            console.log(this.persona.image);
+        };
+    }
+
     logTopic(x: any) {
+        console.log('x.name', x.name);
         if (x.value) {
-            this.user.topics.push(x.name);
+            this.persona.topics.push(x.name);
         }
-        console.log(this.user.topics);
+        console.log(this.persona.topics);
     }
     logBio(x: any) {
-        this.user.bio = x.value;
+        this.persona.bio = x.value;
     }
 
     // Uso conjunto de los datos guardados en el objeto
     log(): any {
-        this.user.loginId = this.loginId;
-        console.log(this.user);
-        this.crudService.addnewuser(this.user).subscribe({
+        this.persona.loginId = this.userId;
+        this.crudService.addnewuser(this.persona).subscribe({
             next: (any) => {
                 console.log('Data added successfully!');
-                this.ngZone.run(() => this.router.navigateByUrl('/main'));
+                this.ngZone.run(() => this.router.navigateByUrl('/account'));
             },
             error: (err) => {
                 console.log(err);

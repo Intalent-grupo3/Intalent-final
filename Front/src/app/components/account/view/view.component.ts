@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
-    selector: 'app-main',
-    templateUrl: './main.component.html',
-    styleUrls: ['./main.component.scss'],
+    selector: 'app-view',
+    templateUrl: './view.component.html',
+    styleUrls: ['./view.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class ViewComponent implements OnInit {
     title = 'lucatic-grupo3-final';
     parentSubject: Subject<string> = new Subject();
     constructor() {}

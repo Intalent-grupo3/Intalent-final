@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -8,18 +8,44 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    submitValue = 'Entra';
+    //submitValue = 'Entra';
 
-    constructor(public auth: AuthService, public userFirebase: AuthService) {}
+    constructor(
+        public auth: AuthService,
+        public userFirebase: AuthService,
+        public router: Router
+    ) {}
 
     ngOnInit(): void {}
 
-    async login(user: string, pass: string) {
+    async logIn(user: string, pass: string) {
         try {
             await this.auth.login(user, pass);
-            alert('Has Entrado');
+            this.router.navigateByUrl('/account');
         } catch (e: any) {
-            alert(e.message);
+            //alert(e.message);
+            if (
+                e.message ==
+                'Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).'
+            ) {
+                alert('El usuario que ha introducido no existe');
+            } else if (
+                e.message ==
+                'Firebase: The email address is badly formatted. (auth/invalid-email).'
+            ) {
+                alert(
+                    'El email que has introducido no tiene el formato ...@...'
+                );
+            } else if (
+                e.message ==
+                'Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).'
+            ) {
+                alert(
+                    'El email o la contraseña que ha introducido es incorrecta'
+                );
+            } else {
+                alert(e.message);
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 import { Component, NgZone, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Persona } from "src/app/models/user";
 import { CrudServicesService } from "src/app/services/crud-services.service";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-edit-profile",
@@ -14,15 +14,15 @@ export class EditProfileComponent implements OnInit {
   persona: Persona = {} as Persona;
   constructor(
     private crudService: CrudServicesService,
-    private formBuilder: FormBuilder,
     private router: Router,
-    private ngZone: NgZone
-  ) {
-    this.loginId; //=el loginId de Yelder
+    private ngZone: NgZone,
+    public userFirebase: AuthService
+    ) {
+        this.loginId=userFirebase.userFirebase
   }
 
   ngOnInit(): void {}
-  onUpdate(): any {
+  updateProfile(): any {
     this.crudService.updateUserProfile(this.loginId, this.persona).subscribe({
       next: (any) => {
         console.log("Perfil actualizado correctamente");

@@ -1,0 +1,15 @@
+.navbar {
+  position: fixed;
+  justify-content: center;
+  width: 4em;
+  height: 100%;
+  background-color: var(--color-secondary-1);
+
+  &--list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style: none;
+  }
+}

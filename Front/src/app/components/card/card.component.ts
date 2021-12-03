@@ -1,9 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { trigger, keyframes, animate, transition } from '@angular/animations';
 import * as kf from './keyframes';
-import { User } from './user';
-import data from './users.json';
+import { CrudServicesService } from 'src/app/services/crud-services.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Subject } from 'rxjs';
+import { Persona } from 'src/app/models/user';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 @Component({
     selector: 'app-card',
@@ -20,13 +24,32 @@ import { Subject } from 'rxjs';
     ],
 })
 export class CardComponent {
-    public users: User[] = data;
+    users: Persona = {} as Persona;
+    loginId: any;
+    userId: any;
+    auth = getAuth();
     public index = 0;
+    state: any;
     @Input()
     parentSubject!: Subject<any>;
 
     animationState!: string;
-    constructor() {}
+    constructor(
+        private crudService: CrudServicesService,
+        private router: Router,
+        private ngZone: NgZone,
+        public userFirebase: AuthService,
+        public firebase: AngularFireAuth
+    ) {
+        this.loginId = getAuth().currentUser?.uid;
+        console.log(
+            'le llega este id para generar la persona aleatoria' + this.loginId
+        );
+        crudService.getRandomUser(this.loginId).subscribe((res) => {
+            console.log(res);
+            this.users = res;
+        });
+    }
 
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
@@ -34,13 +57,13 @@ export class CardComponent {
         });
     }
 
-    startAnimation(state) {
+    startAnimation(state: any) {
         if (!this.animationState) {
             this.animationState = state;
         }
     }
 
-    resetAnimationState(state) {
+    resetAnimationState(state: any) {
         this.animationState = '';
         this.index++;
     }

@@ -11,14 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SigninComponent } from './components/signin/signin.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { MainComponent } from './components/main/main.component';
+import { ProfileComponent } from './components/account/profile/profile.component';
+import { NavbarComponent } from './components/account/navbar/navbar.component';
 import { CardComponent } from './components/card/card.component';
 import { CreateProfileComponent } from './components/create-profile/create-profile.component';
-import { InComponent } from './components/in/in.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AccountComponent } from './components/account/account.component';
+import { ViewComponent } from './components/account/view/view.component';
 
 @NgModule({
     declarations: [
@@ -27,12 +27,12 @@ import { HeaderComponent } from './components/header/header.component';
         SigninComponent,
         ProfileComponent,
         NavbarComponent,
-        MainComponent,
         CardComponent,
         CreateProfileComponent,
-        InComponent,
         EditProfileComponent,
         HeaderComponent,
+        AccountComponent,
+        ViewComponent,
     ],
     imports: [
         BrowserModule,
