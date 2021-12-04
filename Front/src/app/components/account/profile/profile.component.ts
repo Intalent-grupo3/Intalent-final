@@ -1,7 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Persona } from 'src/app/models/user';
-import { CreateProfileComponent } from 'src/app/components/create-profile/create-profile.component';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 
 @Component({

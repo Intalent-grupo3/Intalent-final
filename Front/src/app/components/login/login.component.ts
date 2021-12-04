@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     async logIn(user: string, pass: string) {
         try {
             await this.auth.login(user, pass);
+            console.log(this.auth);
             this.router.navigateByUrl('/account');
         } catch (e: any) {
             //alert(e.message);
