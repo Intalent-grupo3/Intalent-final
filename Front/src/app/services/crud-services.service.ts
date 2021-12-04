@@ -30,10 +30,7 @@ export class CrudServicesService {
     //traer perfil cuando se hace login
     showuserprofile(loginId: any): Observable<any> {
         let API_URL = `${this.REST_API}/perfil/${loginId}`;
-        const user = this.httpClient.get(API_URL, {
-            headers: this.httpHeaders,
-        });
-        return user.pipe(
+        return this.httpClient.get(API_URL, { headers: this.httpHeaders }).pipe(
             map((res: any) => {
                 return res || {};
             }),
