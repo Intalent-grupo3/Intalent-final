@@ -52,13 +52,18 @@ export class CardComponent {
           console.log(res)
           this.users =res;
         });
+        
       }
+      
 
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
             this.startAnimation(event);
         });
+    }
 
+    like(){
+      console.log(this.users.loginId)
     }
 
   startAnimation(state:any) {

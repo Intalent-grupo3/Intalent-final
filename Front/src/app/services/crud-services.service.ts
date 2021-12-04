@@ -62,6 +62,25 @@ export class CrudServicesService {
        catchError(this.handleError)
      )
   }
+
+  //dar like
+  likeUser(loginId:any,randUserId:any):Observable<any>{
+    let API_URL = `${this.REST_API}/dar-like/${loginId}`;
+    return this.httpClient.put(API_URL, randUserId, { headers: this.httpHeaders })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  //dar dislike
+  dislikeUser(loginId:any,randUserId:any):Observable<any>{
+    let API_URL = `${this.REST_API}/dar-dislike/${loginId}`;
+    return this.httpClient.put(API_URL, randUserId, { headers: this.httpHeaders })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
   //tratamiento de errores
    handleError(error: HttpErrorResponse) {
     let errorMessage = '';
