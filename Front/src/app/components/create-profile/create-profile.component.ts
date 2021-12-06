@@ -23,6 +23,7 @@ export class CreateProfileComponent implements OnInit {
         'Picnic',
         'Idiomas',
     ];
+    topics: Array<string> = [];
     test = [];
 
     constructor(
@@ -65,8 +66,13 @@ export class CreateProfileComponent implements OnInit {
     logTopic(x: any) {
         console.log('x.name', x.name);
         if (x.value) {
-            this.persona.topics.push(x.name);
+            this.topics.push(x.name);
+        } else {
+            this.topics.forEach((item, index) => {
+                if (item === x.name) this.topics.splice(index, 1);
+            });
         }
+        this.persona.topics = this.topics;
         console.log(this.persona.topics);
     }
     logBio(x: any) {

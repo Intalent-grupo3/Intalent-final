@@ -3,21 +3,23 @@
         <li>
             <a
                 routerLink="view"
-                routerLinkActive="active-link"
+                routerLinkActive="active"
                 class="navbar--list__item"
-                >Home</a
-            >
+                ><i class="fas fa-home"></i
+            ></a>
         </li>
         <li>
             <a
                 routerLink="profile"
-                routerLinkActive="active-link"
+                routerLinkActive="active"
                 class="navbar--list__item"
-                >Perfil</a
-            >
+                ><i class="fas fa-user-circle"></i
+            ></a>
         </li>
         <li>
-            <button (click)="auth.logout()" routerLink="../login">Salir</button>
+            <a (click)="auth.logout()" routerLink="../login">
+                <i class="fas fa-power-off"></i>
+            </a>
         </li>
     </ul>
 </nav>

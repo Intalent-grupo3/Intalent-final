@@ -7,9 +7,9 @@ import { SigninComponent } from './components/signin/signin.component';
 import { CreateProfileComponent } from './components/create-profile/create-profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
-import { AccountComponent } from './components/account/account.component';
-import { ProfileComponent } from './components/account/profile/profile.component';
-import { ViewComponent } from './components/account/view/view.component';
+import { AccountComponent } from './components/in/in.component';
+import { ProfileComponent } from './components/in/profile/profile.component';
+import { ViewComponent } from './components/in/view/view.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
