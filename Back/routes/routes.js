@@ -4,21 +4,71 @@ import { Persona } from "../estructuraDocumentosBBDD/models.js";
 var app = express();
 app.use(express.json());
 const router = express.Router();
-import {generargenterandom} from '../llamadaFecthApi/llamadaapi.mjs';
+import { generargenterandom } from '../llamadaFecthApi/llamadaapi.mjs';
 //ruta de generar los bots
-router.route('/generarbots').post((req, res, next)=>{
+router.route('/generarbots').post((req, res, next) => {
     generargenterandom()
     res.send("funciona escritura")
 });
 //borrar los bots
-router.route('/borrardatabase').post((req, res, next)=>{
+router.route('/borrardatabase').post((req, res, next) => {
     mongoose.connection.collection('personas').drop();
     res.send("funciona borrado")
 });
 //crear nuevo perfil
-router.route('/crearperfil').post((req,res,next)=>{
-    Persona.create(req.body,(error,data)=>{
-        if(error){
+/**
+ * @swagger
+ * components: 
+ *  schemas:
+ *      User: 
+ *          type: object
+ *          properties:
+ *              loginId: 
+ *                  type: string
+ *              gender:
+ *                  type: string
+ *              name:
+ *                  type: string
+ *              city:
+ *                  type: string
+ *              country:
+ *                  type: string
+ *              dob:
+ *                  type: data
+ *              image:
+ *                  type: string
+ *              topics:
+ *                  type: string
+ *          example:
+ *                  loginId: hag212442asf
+ *                  gender: femenino
+ *                  name: Rosa
+ *                  city: Sevilla
+ *                  country: España
+ *                  image: https://iteragrow.com/wp-content/uploads/2018/04/buyer-persona-e1545248524290.jpg
+ *                  topics: naturaleza, travel
+ */
+
+/**
+ * @swagger
+ * /api/crearperfil:
+ *  post:
+ *      summary: create a new user
+ *      tags: [User]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      $ref: '#/components/schemas/User'
+ *      responses:
+ *          200:
+ *              description: new user created!
+ */
+router.route('/crearperfil').post((req, res, next) => {
+    Persona.create(req.body, (error, data) => {
+        if (error) {
             return next(error);
         } else {
             res.json(data)
@@ -27,8 +77,33 @@ router.route('/crearperfil').post((req,res,next)=>{
 })
 
 //pedir la info de nuestro perfil
-router.route('/perfil/:id').get((req, res,next) => {
-    Persona.findOne({loginId:req.params.id}, (error, data) => {
+/**
+ * @swagger
+ * /api/perfil/{id}:
+ *  get:
+ *      summary: return a user
+ *      tags: [User]
+ *      parameters:
+ *          - in: path
+ *            name: loginId
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: the user id
+ *              
+ *      responses:
+ *          200:
+ *              description: get a user!
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          $ref: '#/components/schemas/User'
+ *          404:
+ *              description: user no found!
+ */
+router.route('/perfil/:id').get((req, res, next) => {
+    Persona.findOne({ loginId: req.params.id }, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -38,8 +113,28 @@ router.route('/perfil/:id').get((req, res,next) => {
 })
 
 //borrar perfil
+/**
+ * @swagger
+ * /api/perfil/{id}:
+ *  delete:
+ *      summary: delete a user
+ *      tags: [User]
+ *      parameters:
+ *          - in: path
+ *            name: loginId
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: the user id
+ *              
+ *      responses:
+ *          200:
+ *              description: user deleted!
+ *          404:
+ *              description: user no found!
+ */
 router.route('/borrar-perfil/:id').delete((req, res, next) => {
-    Persona.findOneAndRemove({loginId:req.params.id}, (error, data) => {
+    Persona.findOneAndRemove({ loginId: req.params.id }, (error, data) => {
         if (error) {
             return next(error);
         } else {
@@ -51,8 +146,39 @@ router.route('/borrar-perfil/:id').delete((req, res, next) => {
 })
 
 //updatear la info del perfil
-router.route('/actualizar-perfil/:id').put((req,res,next)=>{
-    Persona.findOneAndUpdate({loginId:req.params.id},{$set: req.body},(error,data)=>{
+/**
+ * @swagger
+ * /api/perfil/{id}:
+ *  put:
+ *      summary: update a user
+ *      tags: [User]
+ *      parameters:
+ *          - in: path
+ *            name: loginId
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: the user id
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      $ref: '#/components/schemas/User'          
+ *      responses:
+ *          200:
+ *              description: user updated!
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          $ref: '#/components/schemas/User'
+ *          404:
+ *              description: user no found!
+ */
+router.route('/actualizar-perfil/:id').put((req, res, next) => {
+    Persona.findOneAndUpdate({ loginId: req.params.id }, { $set: req.body }, (error, data) => {
         if (error) {
             return next(error);
             console.log(error)
@@ -65,30 +191,30 @@ router.route('/actualizar-perfil/:id').put((req,res,next)=>{
 
 //traer perfil aleatorio
 let user;
-router.route('/perfil-aleatorio/:id').get((req,res,next)=>{
-    console.log('esto es req.params.id: '+req.params.id)
-     user = Persona.findOne({loginId:req.params.id});
+router.route('/perfil-aleatorio/:id').get((req, res, next) => {
+    console.log('esto es req.params.id: ' + req.params.id)
+    user = Persona.findOne({ loginId: req.params.id });
     user.select('likes dislikes')
-    user.exec(function(err,user){
+    user.exec(function (err, user) {
         if (err) return handleError(err);
         console.log(user.likes)
-        Persona.findOne({$and:[{loginId:{$nin :user.likes}},{loginId:{$nin:user.dislikes}}]}, (error, data) => {
-            console.log('Array likes user: '+user.likes)
+        Persona.findOne({ $and: [{ loginId: { $nin: user.likes } }, { loginId: { $nin: user.dislikes } }] }, (error, data) => {
+            console.log('Array likes user: ' + user.likes)
             if (error) {
                 return next(error)
             } else {
                 res.json(data)
-                console.log('Id de la persona que cumple la query'+data.loginId)
+                console.log('Id de la persona que cumple la query' + data.loginId)
             }
         })
     })
-    
-    
+
+
 })
 
 //dar like a un perfil
-router.route('/dar-like/:id').put((req,res,next)=>{
-    Persona.findOneAndUpdate({loginId:req.params.id},{$push:{likes : req.body}},(error,randUserId)=>{
+router.route('/dar-like/:id').put((req, res, next) => {
+    Persona.findOneAndUpdate({ loginId: req.params.id }, { $push: { likes: req.body } }, (error, randUserId) => {
         if (error) {
             return next(error);
             console.log(error)
@@ -100,8 +226,8 @@ router.route('/dar-like/:id').put((req,res,next)=>{
 })
 
 //dar dislike a un perfil
-router.route('/dar-dislike/:id').put((req,res,next)=>{
-    Persona.findOneAndUpdate({loginId:req.params.id},{$push:{dislikes : req.body}},(error,randUserId)=>{
+router.route('/dar-dislike/:id').put((req, res, next) => {
+    Persona.findOneAndUpdate({ loginId: req.params.id }, { $push: { dislikes: req.body } }, (error, randUserId) => {
         if (error) {
             return next(error);
             console.log(error)
