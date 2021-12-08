@@ -15,6 +15,8 @@ export class CrudServicesService {
    httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private httpClient: HttpClient) { }
+  
+  
 
     //Crear usuario con la info del formulario
    addnewuser(data:Persona):Observable<any>{
@@ -44,7 +46,7 @@ export class CrudServicesService {
 
   // Editar perfil del usuario
   updateUserProfile(loginId:any,data:any): Observable<any>{
-    let API_URL = `${this.REST_API}/borrar-perfil/${loginId}`;
+    let API_URL = `${this.REST_API}/actualizar-perfil/${loginId}`;
     return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
@@ -66,8 +68,8 @@ export class CrudServicesService {
   //dar like
   likeUser(loginId:any,randUserId:any):Observable<any>{
     console.log("Se esta llamando al like")
-    let API_URL = `${this.REST_API}/dar-like/${loginId}`;
-    return this.httpClient.put(API_URL, randUserId, { headers: this.httpHeaders })
+    let API_URL = `${this.REST_API}/dar-like/${loginId}/${randUserId}`;
+    return this.httpClient.put(API_URL, { headers: this.httpHeaders })
     .pipe(
       catchError(this.handleError)
     )
@@ -75,12 +77,10 @@ export class CrudServicesService {
 
   //dar dislike
   dislikeUser(loginId:any,randUserId:any):Observable<any>{
-    console.log("Se esta llamando a dislike")
-    console.log(loginId)
-    console.log(randUserId)
-    let API_URL = `${this.REST_API}/dar-dislike/${loginId}`;
+    console.log('Hemos llamado al CRUD de dar dislike')
+    let API_URL = `${this.REST_API}/dar-dislike/${loginId}/${randUserId}`;
     console.log(API_URL)
-    return this.httpClient.put(API_URL, randUserId, { headers: this.httpHeaders })
+    return this.httpClient.put<any>(API_URL, {headers: this.httpHeaders})
       .pipe(
         catchError(this.handleError)
       

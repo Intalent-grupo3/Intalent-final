@@ -48,7 +48,6 @@ export class CardComponent {
     
     ) {
         this.loginId=getAuth().currentUser?.uid;
-      console.log('le llega este id para generar la persona aleatoria'+this.loginId);
         ;
         
       }
@@ -60,13 +59,8 @@ export class CardComponent {
             
         });
         this.crudService.getRandomUser(this.loginId).subscribe(res => {
-          console.log(res)
           this.users =res;
         })
-    }
-
-    like(){
-      console.log(this.users.loginId)
     }
 
   startAnimation(state:any) {
@@ -91,10 +85,21 @@ export class CardComponent {
     this.parentSubject.next(value);
     //Añadimos el if para las dos posibilidades:
     if (value = "swipeleft") {
-        this.crudService.dislikeUser(this.loginId , this.users.loginId);
-        console.log(this.users);
+        this.crudService.dislikeUser(this.loginId , this.users.loginId).subscribe({next:(any)=>{
+          }
+        , error:(err)=>{
+          console.log(err)}
+    })
+      
+        console.log(this.users)
     } else {
-        this.crudService.likeUser(this.loginId , this.users.loginId);
+        this.crudService.likeUser(this.loginId , this.users.loginId).subscribe({next:(any)=>{
+        }
+      , error:(err)=>{
+        console.log(err)}
+  })
+    
+      console.log(this.users);
 
     }
 }
