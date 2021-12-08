@@ -8,6 +8,7 @@ import { Persona } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+ 
 
 
 
@@ -66,12 +67,16 @@ export class CardComponent {
   startAnimation(state:any) {
     if (!this.animationState) {
       this.animationState = state;
+      
+      this.crudService.getRandomUser(this.loginId).subscribe(res => {
+        this.users =res;
+      })
     }
   }
 
   resetAnimationState(state:any) {
     this.animationState = '';
-    this.index++;
+
   }
   ngOnDestroy() {
     this.parentSubject.unsubscribe();
@@ -86,7 +91,7 @@ export class CardComponent {
     //Añadimos el if para las dos posibilidades:
     if (value = "swipeleft") {
         this.crudService.dislikeUser(this.loginId , this.users.loginId).subscribe({next:(any)=>{
-          }
+        }
         , error:(err)=>{
           console.log(err)}
     })
