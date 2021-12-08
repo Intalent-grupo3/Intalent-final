@@ -17,7 +17,7 @@ export class SigninComponent implements OnInit {
     async registrar(user: string, pass: string) {
         try {
             await this.auth.registrar(user, pass);
-            this.router.navigateByUrl('/createProfile')}
+            this.router.navigateByUrl('https://localhost:3000/index')}
             catch (e: any) {
                 //alert(e.message);
                 if (

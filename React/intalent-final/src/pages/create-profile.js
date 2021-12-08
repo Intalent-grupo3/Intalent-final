@@ -1,6 +1,6 @@
 import React from 'react'
-
-// import axios from 'axios';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import axios from 'axios';
 
 class Crearperfil extends React.Component {
     //const { register, errors, handleSubmit } = useForm();
@@ -13,6 +13,7 @@ class Crearperfil extends React.Component {
             city: '',
             country: '',
             topics: '',
+            bio:'',
         };
         this.topics = [
             'Naturaleza',
@@ -49,25 +50,32 @@ class Crearperfil extends React.Component {
         //Para no propagar el formulario
         event.preventDefault();
         //leo datos
-        const book = {
-            name: this.state.name,
-            price: this.state.price,
-            description: this.state.description
+        const persona = {
+            loginId: getAuth().currentUser?.uid,
+    gender: this.state.gender,
+    name: this.state.name,
+    city: this.state.city,
+    country: this.state.country,
+    dob: this.state.dob,
+    bio: this.state.bio,
+    likes:[],
+    dislikes: [],
+    topics:[],
         };
         //let history = useHistory();
 
-        // axios
-        //     .post(`http://localhost:8000/api/add-book`, book)
-        //     .then((resp) => {
-        //         alert('Se ha guardado el libro [' + this.state.name + ']' + '\nActualiza la lista para verlo');
-        //         //Puedo navegar a Lista. Hay que retocarlo
-        //         //useNavigate("http://localhost:3000/list-books");
-        //         //history.push('/list-books');
-        //     })
-        //     .catch((error) => {
-        //         this.setState({ errorMessage: error.message });
-        //         console.error('Ha habido un error', error);
-        //     });
+        axios
+            .post(`http://localhost:8080/api/crear-perfil`,persona)
+            .then((resp) => {
+                console.log('perfil creado')
+                
+                // navi("http://localhost:4200/main");
+                //history.push('/list-books');
+            })
+            .catch((error) => {
+                this.setState({ errorMessage: error.message });
+                console.error('Ha habido un error', error);
+            });
     };
 
     // --------------------
