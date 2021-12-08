@@ -65,6 +65,7 @@ export class CrudServicesService {
 
   //dar like
   likeUser(loginId:any,randUserId:any):Observable<any>{
+    console.log("Se esta llamando al like")
     let API_URL = `${this.REST_API}/dar-like/${loginId}`;
     return this.httpClient.put(API_URL, randUserId, { headers: this.httpHeaders })
     .pipe(
@@ -74,10 +75,15 @@ export class CrudServicesService {
 
   //dar dislike
   dislikeUser(loginId:any,randUserId:any):Observable<any>{
+    console.log("Se esta llamando a dislike")
+    console.log(loginId)
+    console.log(randUserId)
     let API_URL = `${this.REST_API}/dar-dislike/${loginId}`;
+    console.log(API_URL)
     return this.httpClient.put(API_URL, randUserId, { headers: this.httpHeaders })
-    .pipe(
-      catchError(this.handleError)
+      .pipe(
+        catchError(this.handleError)
+      
     )
   }
 

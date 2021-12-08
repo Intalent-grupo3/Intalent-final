@@ -24,6 +24,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
             transition('* => swipeleft', animate(750, keyframes(kf.swipeleft))),
         ]),
     ],
+    
 })
 export class CardComponent {
   users: Persona = {} as Persona;
@@ -33,7 +34,7 @@ export class CardComponent {
   public index = 0;
   state:any;
   @Input()
-  parentSubject!: Subject<any>;
+  parentSubject: Subject< string > = new Subject();
 
 
 
@@ -48,10 +49,7 @@ export class CardComponent {
     ) {
         this.loginId=getAuth().currentUser?.uid;
       console.log('le llega este id para generar la persona aleatoria'+this.loginId);
-        crudService.getRandomUser(this.loginId).subscribe(res => {
-          console.log(res)
-          this.users =res;
-        });
+        ;
         
       }
       
@@ -59,7 +57,12 @@ export class CardComponent {
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
             this.startAnimation(event);
+            
         });
+        this.crudService.getRandomUser(this.loginId).subscribe(res => {
+          console.log(res)
+          this.users =res;
+        })
     }
 
     like(){
@@ -76,8 +79,6 @@ export class CardComponent {
     this.animationState = '';
     this.index++;
   }
-
-
   ngOnDestroy() {
     this.parentSubject.unsubscribe();
     // this.crudService.getRandomUser(this.loginId).subscribe(res => {
@@ -85,5 +86,17 @@ export class CardComponent {
     //   this.users =res;
     // });
   }
+  
+  cardAnimation(value: any) {
+    this.parentSubject.next(value);
+    //Añadimos el if para las dos posibilidades:
+    if (value = "swipeleft") {
+        this.crudService.dislikeUser(this.loginId , this.users.loginId);
+        console.log(this.users);
+    } else {
+        this.crudService.likeUser(this.loginId , this.users.loginId);
+
+    }
+}
 
 }

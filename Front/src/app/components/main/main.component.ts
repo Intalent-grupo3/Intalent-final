@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
+import {
+    Subject
+} from 'rxjs';
+import {
+    CrudServicesService
+} from '../../services/crud-services.service';
 
 @Component({
     selector: 'app-main',
@@ -8,11 +16,11 @@ import { Subject } from 'rxjs';
 })
 export class MainComponent implements OnInit {
     title = 'lucatic-grupo3-final';
-    parentSubject: Subject<string> = new Subject();
+   // parentSubject: Subject < string > = new Subject();
     constructor() {}
-
-    cardAnimation(value: any) {
-        this.parentSubject.next(value);
-    }
     ngOnInit(): void {}
+   
+
+
+
 }

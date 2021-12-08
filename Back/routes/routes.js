@@ -88,6 +88,7 @@ router.route('/perfil-aleatorio/:id').get((req,res,next)=>{
 
 //dar like a un perfil
 router.route('/dar-like/:id').put((req,res,next)=>{
+    console.log(req.body)
     Persona.findOneAndUpdate({loginId:req.params.id},{$push:{likes : req.body}},(error,randUserId)=>{
         if (error) {
             return next(error);
@@ -101,13 +102,14 @@ router.route('/dar-like/:id').put((req,res,next)=>{
 
 //dar dislike a un perfil
 router.route('/dar-dislike/:id').put((req,res,next)=>{
+    console.log("hola")
     Persona.findOneAndUpdate({loginId:req.params.id},{$push:{dislikes : req.body}},(error,randUserId)=>{
         if (error) {
             return next(error);
             console.log(error)
         } else {
             res.json(randUserId)
-            console.log('Disike añadido correctamente!')
+            console.log('Dislike añadido correctamente!')
         }
     })
 })
