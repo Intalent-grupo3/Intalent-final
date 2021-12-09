@@ -1,4 +1,4 @@
-import { Component, OnInit,NgZone } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 import { Router } from '@angular/router';
 import { Persona } from '../../models/user';
@@ -11,9 +11,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
     styleUrls: ['./create-profile.component.scss'],
 })
 export class CreateProfileComponent implements OnInit {
-    persona: Persona = {} as Persona;
+    public persona: Persona = {} as Persona;
     loginId: any;
-    userId:any;
+    userId: any;
     topicsList = [
         'Naturaleza',
         'Ir de cañas',
@@ -23,6 +23,10 @@ export class CreateProfileComponent implements OnInit {
         'Picnic',
         'Idiomas',
     ];
+    topics: Array<string> = [];
+    test = [];
+    dob: any;
+    age: any;
 
     constructor(
         private crudService: CrudServicesService,
@@ -34,7 +38,6 @@ export class CreateProfileComponent implements OnInit {
         firebase.authState.subscribe((user) => {
             this.userId = String(user?.uid);
         });
-        
     }
 
     // Recogide de información de los inputs
@@ -42,6 +45,9 @@ export class CreateProfileComponent implements OnInit {
         this.persona.name = x.value;
     }
     logAge(x: any) {
+        this.dob = this.persona.dob;
+        this.age = this.dob.split('T');
+        this.persona.dob = this.age[0];
         this.persona.dob = x.value;
     }
     logGender(x: any) {
@@ -53,30 +59,43 @@ export class CreateProfileComponent implements OnInit {
     logCountry(x: any) {
         this.persona.country = x.value;
     }
+    logImage(event: any) {
+        let reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = () => {
+            this.persona.image = reader.result;
+            console.log(this.persona.image);
+        };
+    }
+
     logTopic(x: any) {
+        console.log('x.name', x.name);
         if (x.value) {
-            this.persona.topics.push(x.name);
+            this.topics.push(x.name);
+        } else {
+            this.topics.forEach((item, index) => {
+                if (item === x.name) this.topics.splice(index, 1);
+            });
         }
+        this.persona.topics = this.topics;
         console.log(this.persona.topics);
     }
     logBio(x: any) {
         this.persona.bio = x.value;
     }
-    
+
     // Uso conjunto de los datos guardados en el objeto
-    log():any {
-        this.persona.loginId=this.userId;
-        this.crudService.addnewuser(this.persona)
-        .subscribe({next:(any)=>{
-            console.log('Data added successfully!')
-            this.ngZone.run(() => this.router.navigateByUrl('/main'))}
-          , error:(err)=>{
-            console.log(err);}
-      })
-      console.log(this.persona);
+    log(): any {
+        this.persona.loginId = this.userId;
+        this.crudService.addnewuser(this.persona).subscribe({
+            next: (any) => {
+                console.log('Data added successfully!');
+                this.ngZone.run(() => this.router.navigateByUrl('/account'));
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
     }
-    
-    ngOnInit() { }
-
-
+    ngOnInit() {}
 }

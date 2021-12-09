@@ -1,15 +1,36 @@
-<div class="container signin">
-    <form class="signin--form">
-        <div class="form-goup">
+<div class="container signin notLogged">
+    <header class="header">
+        <h1 class="title">Lucatinder</h1>
+        <div class="logoBox">
+            <img src="../../../assets/logo-white.png" alt="LucaTinder" />
+        </div>
+        ¿Aun no tienes cuenta? No te preocupes, en unos pocos pasos estarás
+        listo para conectarte. <br />
+        <span class="bold">¡Registrate aqui!</span>
+    </header>
+    <form class="form">
+        <div class="form-group">
             <label for="signin--mail">Correo</label>
-            <input #user type="text" name="signin--mail" id="signin--mail" class="form-control" />
+            <input
+                #user
+                type="text"
+                name="signin--mail"
+                id="signin--mail"
+                class="form-control"
+            />
         </div>
         <div class="form-group">
             <label for="signin--pw">Contraseña</label>
-            <input #pass type="password" name="signin--pw" id="signin--pw" class="form-control" />
+            <input
+                #pass
+                type="password"
+                name="signin--pw"
+                id="signin--pw"
+                class="form-control"
+            />
         </div>
 
-        <button (click)="registrar(user.value, pass.value)">
+        <button class="submit" (click)="registrar(user.value, pass.value)">
             Registrarme
         </button>
     </form>
