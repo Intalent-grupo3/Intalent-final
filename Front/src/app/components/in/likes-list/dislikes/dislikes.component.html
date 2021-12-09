@@ -1,0 +1,5 @@
+<div class="likes-list">
+    <a class="likes-component" *ngFor="let user of this.users" (click)="userDetails(user.loginId)" >
+        <img src="{{user.image}}" alt="Imagen perfil usuario">{{ user.name }}<br>
+    </a>
+</div>

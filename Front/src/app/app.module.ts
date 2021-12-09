@@ -19,6 +19,11 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { HeaderComponent } from './components/header/header.component';
 import { AccountComponent } from './components/in/in.component';
 import { ViewComponent } from './components/in/main/main.component';
+import { LikesListComponent } from './components/in/likes-list/likes-list.component';
+import { LikesComponent } from './components/in/likes-list/likes/likes.component';
+import { DislikesComponent } from './components/in/likes-list/dislikes/dislikes.component';
+import { MatchesComponent } from './components/in/likes-list/matches/matches.component';
+import { DetallePerfilComponent } from './components/in/likes-list/detalle-perfil/detalle-perfil.component';
 
 @NgModule({
     declarations: [
@@ -33,6 +38,11 @@ import { ViewComponent } from './components/in/main/main.component';
         HeaderComponent,
         AccountComponent,
         ViewComponent,
+        LikesListComponent,
+        LikesComponent,
+        DislikesComponent,
+        MatchesComponent,
+        DetallePerfilComponent,
     ],
     imports: [
         BrowserModule,

@@ -8,4 +8,6 @@ export interface Persona {
     topics: Array<string>;
     bio: string;
     image: any;
+    likes:Array<string>;
+    dislikes:Array<string>;
 }

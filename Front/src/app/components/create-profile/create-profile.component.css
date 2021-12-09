@@ -1,0 +1,53 @@
+.create {
+  background: linear-gradient(90deg, var(--color-primary) 10%, var(--color-secondary-1) 100%);
+  height: inherit;
+}
+.create .form {
+  margin: 10vh 2em 1em;
+  padding: 2em;
+  background: var(--color-gray-t);
+  border: 1px solid var(--color-gray);
+  border-radius: 10px;
+  width: 60vw;
+  min-width: 250px;
+}
+.create .form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 2em;
+  width: 60%;
+  min-width: 220px;
+  color: var(--color-white);
+}
+.create .form .form-group label {
+  margin-bottom: 0.5em;
+}
+.create .form .form-group .form-control, .create .form .form-group textarea {
+  color: var(--color-white);
+  background-color: var(--color-gray-t);
+  box-shadow: inset 3px 3px 7px 1px var(--color-gray-dark);
+  border: 0;
+  padding: 1em;
+  border-radius: 5px;
+}
+.create .form .form-group .form-control:focus, .create .form .form-group .form-control:focus-visible, .create .form .form-group .form-control:active, .create .form .form-group textarea:focus, .create .form .form-group textarea:focus-visible, .create .form .form-group textarea:active {
+  color: var(--color-primary);
+  background-color: var(--color-gray);
+  box-shadow: inset 2px 2px 3px 1px var(--color-gray-dark-y);
+  outline: none;
+}
+.create .form .submit {
+  display: block;
+  margin: 0 auto;
+  width: 30%;
+  min-width: 90px;
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  box-shadow: none;
+  border: 0;
+  padding: 1em;
+  border-radius: 15px;
+}
+.create .form .submit:hover {
+  background-color: var(--color-secondary-1);
+}/*# sourceMappingURL=create-profile.component.css.map */
