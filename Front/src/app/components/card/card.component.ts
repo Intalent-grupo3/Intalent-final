@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
  
-
+function retrasar(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
 
 
 @Component({
@@ -56,7 +58,12 @@ export class CardComponent {
 
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
-            this.startAnimation(event);
+          const promesaTarjeta = new Promise<void>((resolve, reject) => {
+            setTimeout(() => {
+                resolve(this.startAnimation(event))
+            }, 50) 
+        })
+            ;
             
         });
         this.crudService.getRandomUser(this.loginId).subscribe(res => {
@@ -64,10 +71,10 @@ export class CardComponent {
         })
     }
 
-  startAnimation(state:any) {
+    
+    startAnimation(state:any) {
     if (!this.animationState) {
       this.animationState = state;
-      
       this.crudService.getRandomUser(this.loginId).subscribe(res => {
         this.users =res;
       })
@@ -108,5 +115,6 @@ export class CardComponent {
 
     }
 }
+
 
 }
