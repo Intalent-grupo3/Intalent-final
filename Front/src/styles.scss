@@ -1,23 +1,77 @@
-
 /* You can add global styles to this file, and also import other style files */
+
 :root {
-    --color-primary: #1b76be;
-    --color-primary-light: #9dd3ff;
-    --color-primary-dark: #0b4779;
+    --color-primary: #4a1c3e;
+    --color-primary-light: #fa91de;
+    --color-primary-dark: #25031c;
     --color-secondary-1: #f66159;
-    --color-secondary-2: #f52778;
-    --color-gradient: linear-gradient(
-        90deg,
-        rgba(246, 97, 89, 1) 0%,
-        rgba(245, 39, 120, 1) 100%
-    );
-    --color-white: rgb(243, 243, 243);
+    --color-secondary-2: #b40048;
+    --color-white: rgb(250, 250, 250);
+    --color-gray: rgb(218, 218, 218);
+    --color-gray-t: rgba(218, 218, 218, 0.2);
+    --color-gray-dark: rgba(99, 99, 99, 0.5);
+    --color-gray-dark-t: rgb(63 63 63 / 29%);
 }
 
-html,
 body {
     margin: 0;
-    padding: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
     background-color: var(--color-white);
 }
 
+h1 {
+    display: none;
+}
+
+img {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.link {
+    color: var(--color-white);
+
+    &:hover {
+        color: var(--color-primary);
+    }
+}
+
+.bold {
+    font-weight: 700;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.alert {
+    color: var(--color-secondary-1);
+    background-color: var(--color-gray-dark-t);
+    border: 2px solid var(--color-secondary-1);
+    border-top: 0;
+    border-radius: 0 0 10px 10px;
+    padding: 0.3em;
+}
+
+app-header {
+    width: 100%;
+}
+
+.backBox {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    font-size: 2em;
+    margin: 0.5em;
+
+    a {
+        color: white;
+    }
+}

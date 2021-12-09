@@ -4,10 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 //Components (to route) List
 import { LoginComponent } from './components/login/login.component';
 import { SigninComponent } from './components/signin/signin.component';
-import { MainComponent } from './components/main/main.component';
 import { CreateProfileComponent } from './components/create-profile/create-profile.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { InComponent } from './components/in/in.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+
+import { AccountComponent } from './components/in/in.component';
+import { ProfileComponent } from './components/in/profile/profile.component';
+import { ViewComponent } from './components/in/main/main.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -20,25 +22,20 @@ const routes: Routes = [
         component: SigninComponent,
     },
     {
-        path: 'createProfile',
+        path: 'create-profile',
         component: CreateProfileComponent,
     },
     {
-        path: 'main',
-        component: InComponent,
+        path: 'edit-profile',
+        component: EditProfileComponent,
+    },
+    {
+        path: 'account',
+        component: AccountComponent,
         children: [
-            {
-                path: '',
-                component: MainComponent,
-            },
-            // {
-            //   path: 'contacts',
-            //   component: ContactsComponent,
-            // },
-            {
-                path: 'profile',
-                component: ProfileComponent,
-            },
+            { path: '', pathMatch: 'full', redirectTo: 'view' },
+            { path: 'view', component: ViewComponent },
+            { path: 'profile', component: ProfileComponent },
         ],
     },
 ];
