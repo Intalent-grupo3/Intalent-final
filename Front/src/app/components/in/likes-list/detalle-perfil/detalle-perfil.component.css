@@ -1,0 +1,22 @@
+.profile {
+  margin: 7em auto 0;
+  border: 1px solid var(--color-gray);
+  padding: 1em;
+  width: 100%;
+  max-width: 360px;
+}
+.profile-photoBox {
+  width: 100%;
+  overflow: hidden;
+}
+.profile-name {
+  display: inline;
+}
+.profile-topic {
+  display: inline-block;
+  border: 2px solid var(--color-secondary-2);
+  border-radius: 50px;
+  font-size: 0.8em;
+  padding: 0 0.5em;
+  margin: 0.3em;
+}/*# sourceMappingURL=detalle-perfil.component.css.map */

@@ -1,0 +1,27 @@
+.likesNavbar {
+  margin-top: 4.3em;
+  justify-content: center;
+  background-color: var(--color-secondary-1);
+  padding-left: 4em;
+}
+.likesNavbar--list {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  padding: 0;
+}
+.likesNavbar--list li {
+  width: 30%;
+  text-align: center;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.likesNavbar--list a {
+  font-size: 2em;
+  color: white;
+  padding: 1em;
+}
+.likesNavbar--list .active {
+  color: var(--color-primary);
+}/*# sourceMappingURL=likes-list.component.css.map */
