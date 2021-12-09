@@ -127,7 +127,7 @@
                     type="checkbox"
                     id="topic-{{ topic.name }}"
                     name="{{ topic.name }}"
-                    value="{{ topic.value }}"
+                    checked="{{ topic.value }}"
                     (change)="logTopic(userTopic)"
                 />
                 <label for="topic-{{ topic.name }}"> {{ topic.name }}</label>

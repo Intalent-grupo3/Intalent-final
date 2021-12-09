@@ -23,7 +23,7 @@ export class EditProfileComponent implements OnInit {
         { name: 'Bailar', value: false },
         { name: 'Mascotas', value: false },
         { name: 'Picnic', value: false },
-        { name: 'Idiomas', value: 'false' },
+        { name: 'Idiomas', value: false },
     ];
 
     topics: Array<string> = [];
@@ -52,7 +52,7 @@ export class EditProfileComponent implements OnInit {
             this.topicsList.map((t) => {
                 for (let topic of this.persona.topics) {
                     if (topic == t.name) {
-                        t.value = 'true';
+                        t.value = true;
                     }
                 }
             });
