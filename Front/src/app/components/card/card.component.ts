@@ -7,12 +7,11 @@ import { Subject } from 'rxjs';
 import { Persona } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
- 
-function retrasar(ms: number) {
-  return new Promise( resolve => setTimeout(resolve, ms) );
-}
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
+function retrasar(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 @Component({
     selector: 'app-card',
@@ -27,18 +26,18 @@ function retrasar(ms: number) {
             transition('* => swipeleft', animate(750, keyframes(kf.swipeleft))),
         ]),
     ],
-    
 })
 export class CardComponent {
-  users: Persona = {} as Persona;
-  loginId: any;
-  userId: any;
-  auth=getAuth();
-  public index = 0;
-  state:any;
-  @Input()
-  parentSubject: Subject< string > = new Subject();
-
+    users: Persona = {} as Persona;
+    loginId: any;
+    userId: any;
+    auth = getAuth();
+    public index = 0;
+    state: any;
+    dob: any;
+    age: any;
+    @Input()
+    parentSubject: Subject<string> = new Subject();
 
     animationState!: string;
     constructor(
@@ -60,63 +59,68 @@ export class CardComponent {
 
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
-          const promesaTarjeta = new Promise<void>((resolve, reject) => {
-            setTimeout(() => {
-                resolve(this.startAnimation(event))
-            }, 50) 
-        })
-            ;
-            
+            const promesaTarjeta = new Promise<void>((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(this.startAnimation(event));
+                }, 50);
+            });
         });
-        this.crudService.getRandomUser(this.loginId).subscribe(res => {
-          this.users =res;
-        })
+        this.crudService.getRandomUser(this.loginId).subscribe((res) => {
+            this.users = res;
+            this.dob = this.users.dob;
+            this.age = this.dob.split('T');
+            this.users.dob = this.age[0];
+        });
     }
 
-    
-    startAnimation(state:any) {
-    if (!this.animationState) {
-      this.animationState = state;
-      this.crudService.getRandomUser(this.loginId).subscribe(res => {
-        this.users =res;
-      })
-    }}
-
-  resetAnimationState(state:any) {
-    this.animationState = '';
-
-  }
-  ngOnDestroy() {
-    this.parentSubject.unsubscribe();
-    // this.crudService.getRandomUser(this.loginId).subscribe(res => {
-    //   console.log(res)
-    //   this.users =res;
-    // });
-  }
-  
-  cardAnimation(value: any) {
-    this.parentSubject.next(value);
-    //Añadimos el if para las dos posibilidades:
-    if (value = "swipeleft") {
-        this.crudService.dislikeUser(this.loginId , this.users.loginId).subscribe({next:(any)=>{
+    startAnimation(state: any) {
+        if (!this.animationState) {
+            this.animationState = state;
+            this.crudService.getRandomUser(this.loginId).subscribe((res) => {
+                this.users = res;
+                this.dob = this.users.dob;
+                this.age = this.dob.split('T');
+                this.users.dob = this.age[0];
+            });
         }
-        , error:(err)=>{
-          console.log(err)}
-    })
-      
-        console.log(this.users)
-    } else {
-        this.crudService.likeUser(this.loginId , this.users.loginId).subscribe({next:(any)=>{
-        }
-      , error:(err)=>{
-        console.log(err)}
-  })
-    
-      console.log(this.users);
-
     }
-}
 
+    resetAnimationState(state: any) {
+        this.animationState = '';
+    }
+    ngOnDestroy() {
+        this.parentSubject.unsubscribe();
+        // this.crudService.getRandomUser(this.loginId).subscribe(res => {
+        //   console.log(res)
+        //   this.users =res;
+        // });
+    }
 
-   
+    cardAnimation(value: any) {
+        this.parentSubject.next(value);
+        //Añadimos el if para las dos posibilidades:
+        if (value == 'swipeleft') {
+            this.crudService
+                .dislikeUser(this.loginId, this.users.loginId)
+                .subscribe({
+                    next: (any) => {},
+                    error: (err) => {
+                        console.log(err);
+                    },
+                });
+
+            console.log(this.users);
+        } else {
+            this.crudService
+                .likeUser(this.loginId, this.users.loginId)
+                .subscribe({
+                    next: (any) => {},
+                    error: (err) => {
+                        console.log(err);
+                    },
+                });
+
+            console.log(this.users);
+        }
+    }
 }

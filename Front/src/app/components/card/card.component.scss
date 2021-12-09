@@ -1,15 +1,16 @@
+.card {
+    margin-top: 7em;
+}
+
 .tphoto {
     width: 350px;
     height: 350px;
     overflow: hidden;
     margin: 0 auto;
-    position: relative;
     top: 15px;
     border-radius: 10px;
-    border: 1px solid #c0c0c0;
+    border: 1px solid var(--color-gray);
     padding-bottom: 60px;
-    background-color: #fff;
-    box-shadow: 2px 2px 2px #c0c0c0;
 }
 
 .tname {
@@ -18,73 +19,31 @@
     font-family: 'Helvetica', sans-serif;
     float: left;
 }
-.tname .age {
-    font-weight: 200;
+
+.tcontrols {
+    display: flex;
+    justify-content: center;
 }
-.tinfo {
-    font-family: 'Helvetica', sans-serif;
+
+.button {
+    margin: 1em 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7em;
+    width: 7em;
+    border-radius: 50%;
+    border: 1px solid var(--color-gray);
 }
-.tinfo .fa-users,
-.tinfo .fa-book {
-    color: #c0c0c0;
-    float: right;
-    position: relative;
-    font-size: 24px;
-    padding: 12px;
+
+.button i {
+    font-size: 5em;
+    display: block;
 }
+
 .tyes {
-    background-color: #fff;
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    -ms-border-radius: 50%;
-    position: relative;
-    display: inline-block;
-    top: 48px;
-    left: 0px;
-    border: 10px solid #f0f0f0;
-}
-.tyes i {
     color: #5de19c;
-    font-size: 6rem;
-    padding: 1rem;
 }
-.tno i {
-    background-color: #fff;
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    -ms-border-radius: 50%;
-    position: relative;
-    display: inline-block;
-    top: 48px;
-    left: 0px;
-    border: 10px solid #f0f0f0;
-    color: #ff695b;
-    font-size: 4rem;
-    padding: 17px 28px;
-    font-style: normal;
-}
-.ti {
-    background-color: #fff;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    -ms-border-radius: 50%;
-    position: relative;
-    display: inline-block;
-    left: 12px;
-    top: 30px;
-    border: 10px solid #f0f0f0;
-}
-.ti .fa-info {
-    font-size: 23px;
-    padding: 15px 20px;
-    color: #398beb;
+.tno {
+    color: var(--color-secondary-2);
 }
