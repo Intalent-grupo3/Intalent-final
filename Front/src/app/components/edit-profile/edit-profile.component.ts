@@ -105,6 +105,10 @@ export class EditProfileComponent implements OnInit {
 
     // Uso conjunto de los datos guardados en el objeto
     log(): any {
+        this.dob = this.persona.dob;
+        this.age = this.dob.split('T');
+        this.persona.dob = this.age[0];
+        console.log(this.persona.dob);
         this.crudService
             .updateUserProfile(this.persona.loginId, this.persona)
             .subscribe({

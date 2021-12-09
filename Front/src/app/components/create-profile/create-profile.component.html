@@ -130,6 +130,7 @@
             <textarea
                 required
                 ngModel
+                minlength="50"
                 #userBio="ngModel"
                 name="create--text"
                 id="create--text"
@@ -137,6 +138,12 @@
                 rows="10"
                 (change)="logBio(userBio)"
             ></textarea>
+            <div
+                class="alert alert-danger"
+                *ngIf="userBio.touched && !userBio.valid"
+            >
+                Escribe al menos 50 caracteres sobre ti.
+            </div>
         </div>
         <button class="submit" (click)="log()">Continuar</button>
         <!-- <input type="submit" value="Continuar" routerLink="../main" /> -->
