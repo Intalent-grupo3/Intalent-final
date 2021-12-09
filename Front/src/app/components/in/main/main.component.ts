@@ -7,20 +7,20 @@ import {
 } from 'rxjs';
 import {
     CrudServicesService
-} from '../../services/crud-services.service';
+} from '../../../services/crud-services.service';
 
 @Component({
-    selector: 'app-main',
+    selector: 'app-view',
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class ViewComponent implements OnInit {
     title = 'lucatic-grupo3-final';
    // parentSubject: Subject < string > = new Subject();
     constructor() {}
     ngOnInit(): void {}
    
 
-x
+
 
 }

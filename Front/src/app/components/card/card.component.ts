@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, NgZone } from '@angular/core';
-import { trigger, keyframes, animate, transition } from "@angular/animations";
+import { trigger, keyframes, animate, transition } from '@angular/animations';
 import * as kf from './keyframes';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -40,21 +40,23 @@ export class CardComponent {
   parentSubject: Subject< string > = new Subject();
 
 
-
-  animationState!: string;
-  constructor(
-    private crudService: CrudServicesService,
-    private router: Router,
-    private ngZone: NgZone,
-    public userFirebase: AuthService,
-    public firebase: AngularFireAuth,
-    
+    animationState!: string;
+    constructor(
+        private crudService: CrudServicesService,
+        private router: Router,
+        private ngZone: NgZone,
+        public userFirebase: AuthService,
+        public firebase: AngularFireAuth
     ) {
-        this.loginId=getAuth().currentUser?.uid;
-        ;
-        
-      }
-      
+        this.loginId = getAuth().currentUser?.uid;
+        console.log(
+            'le llega este id para generar la persona aleatoria' + this.loginId
+        );
+        crudService.getRandomUser(this.loginId).subscribe((res) => {
+            console.log(res);
+            this.users = res;
+        });
+    }
 
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
@@ -78,8 +80,7 @@ export class CardComponent {
       this.crudService.getRandomUser(this.loginId).subscribe(res => {
         this.users =res;
       })
-    }
-  }
+    }}
 
   resetAnimationState(state:any) {
     this.animationState = '';
@@ -117,4 +118,5 @@ export class CardComponent {
 }
 
 
+   
 }
