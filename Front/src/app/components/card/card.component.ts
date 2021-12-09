@@ -7,7 +7,12 @@ import { Subject } from 'rxjs';
 import { Persona } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+ 
+function retrasar(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
 
 @Component({
     selector: 'app-card',
@@ -22,16 +27,18 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
             transition('* => swipeleft', animate(750, keyframes(kf.swipeleft))),
         ]),
     ],
+    
 })
 export class CardComponent {
-    users: Persona = {} as Persona;
-    loginId: any;
-    userId: any;
-    auth = getAuth();
-    public index = 0;
-    state: any;
-    @Input()
-    parentSubject!: Subject<any>;
+  users: Persona = {} as Persona;
+  loginId: any;
+  userId: any;
+  auth=getAuth();
+  public index = 0;
+  state:any;
+  @Input()
+  parentSubject: Subject< string > = new Subject();
+
 
     animationState!: string;
     constructor(
@@ -53,26 +60,63 @@ export class CardComponent {
 
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
-            this.startAnimation(event);
+          const promesaTarjeta = new Promise<void>((resolve, reject) => {
+            setTimeout(() => {
+                resolve(this.startAnimation(event))
+            }, 50) 
+        })
+            ;
+            
         });
+        this.crudService.getRandomUser(this.loginId).subscribe(res => {
+          this.users =res;
+        })
     }
 
-    like() {
-        console.log(this.users.loginId);
-    }
+    
+    startAnimation(state:any) {
+    if (!this.animationState) {
+      this.animationState = state;
+      this.crudService.getRandomUser(this.loginId).subscribe(res => {
+        this.users =res;
+      })
+    }}
 
-    startAnimation(state: any) {
-        if (!this.animationState) {
-            this.animationState = state;
+  resetAnimationState(state:any) {
+    this.animationState = '';
+
+  }
+  ngOnDestroy() {
+    this.parentSubject.unsubscribe();
+    // this.crudService.getRandomUser(this.loginId).subscribe(res => {
+    //   console.log(res)
+    //   this.users =res;
+    // });
+  }
+  
+  cardAnimation(value: any) {
+    this.parentSubject.next(value);
+    //Añadimos el if para las dos posibilidades:
+    if (value = "swipeleft") {
+        this.crudService.dislikeUser(this.loginId , this.users.loginId).subscribe({next:(any)=>{
         }
-    }
+        , error:(err)=>{
+          console.log(err)}
+    })
+      
+        console.log(this.users)
+    } else {
+        this.crudService.likeUser(this.loginId , this.users.loginId).subscribe({next:(any)=>{
+        }
+      , error:(err)=>{
+        console.log(err)}
+  })
+    
+      console.log(this.users);
 
-    resetAnimationState(state: any) {
-        this.animationState = '';
-        this.index++;
     }
+}
 
-    ngOnDestroy() {
-        this.parentSubject.unsubscribe();
-    }
+
+   
 }

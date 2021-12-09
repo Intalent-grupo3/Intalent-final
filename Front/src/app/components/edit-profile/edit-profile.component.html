@@ -125,12 +125,12 @@
                     ngModel
                     #userTopic="ngModel"
                     type="checkbox"
-                    id="topic-{{ topic }}"
-                    name="{{ topic }}"
-                    value="{{ topic }}"
+                    id="topic-{{ topic.name }}"
+                    name="{{ topic.name }}"
+                    checked="{{ topic.value }}"
                     (change)="logTopic(userTopic)"
                 />
-                <label for="topic-{{ topic }}"> {{ topic }}</label>
+                <label for="topic-{{ topic.name }}"> {{ topic.name }}</label>
             </div>
         </div>
         <div class="form-group">
