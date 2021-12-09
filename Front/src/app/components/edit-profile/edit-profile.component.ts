@@ -17,14 +17,15 @@ export class EditProfileComponent implements OnInit {
     loginId: any;
     userId: any;
     topicsList = [
-        'Naturaleza',
-        'Ir de cañas',
-        'Juegos de mesa',
-        'Bailar',
-        'Mascotas',
-        'Picnic',
-        'Idiomas',
+        { name: 'Naturaleza', value: false },
+        { name: 'Ir de cañas', value: false },
+        { name: 'Juegos de mesa', value: false },
+        { name: 'Bailar', value: false },
+        { name: 'Mascotas', value: false },
+        { name: 'Picnic', value: false },
+        { name: 'Idiomas', value: false },
     ];
+
     topics: Array<string> = [];
     test = [];
     dob: any;
@@ -48,6 +49,13 @@ export class EditProfileComponent implements OnInit {
             this.dob = this.persona.dob;
             this.age = this.dob.split('T');
             this.persona.dob = this.age[0];
+            this.topicsList.map((t) => {
+                for (let topic of this.persona.topics) {
+                    if (topic == t.name) {
+                        t.value = true;
+                    }
+                }
+            });
         });
     }
 
@@ -80,7 +88,7 @@ export class EditProfileComponent implements OnInit {
     }
 
     logTopic(x: any) {
-        console.log('x.name', x.name);
+        console.log('x.name', x.value);
         if (x.value) {
             this.topics.push(x.name);
         } else {

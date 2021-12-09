@@ -53,7 +53,6 @@ export class CrudServicesService {
             .put(API_URL, data, { headers: this.httpHeaders })
             .pipe(catchError(this.handleError));
     }
-
   //traer persona aleatoria
   getRandomUser(loginId:any):Observable<any>{
     let API_URL = `${this.REST_API}/perfil-aleatorio/${loginId}`;
@@ -92,24 +91,14 @@ export class CrudServicesService {
   handleError(error: HttpErrorResponse) {
 
     let errorMessage = '';
-
     if (error.error instanceof ErrorEvent) {
-
         // Handle client error
-
         errorMessage = error.error.message;
-
     } else {
-
         // Handle server error
-
         errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-
     }
-
     console.log(errorMessage);
-
     return throwError(() => new Error(errorMessage));
-
 }
 }
