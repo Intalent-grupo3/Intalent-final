@@ -18,6 +18,8 @@
   .create {
     background: linear-gradient(90deg, var(--color-primary) 10%, var(--color-secondary-1) 100%);
     margin: 0 auto;
+    font-size: 2em;
+    height: 100% !important;
 }
 .create h1{
     color: var(--color-white);

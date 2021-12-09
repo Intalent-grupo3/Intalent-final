@@ -1,22 +1,27 @@
-
 import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../config/Fire'
 import './signin.css'
 import logo from '../assets/logo-white.png'
+import { useNavigate } from 'react-router-dom';
+
+
 export default function Registrar() {
     const [registerUser, setRegisterUser] = useState('');
     const [registerpass, setRegisterPass] = useState('');
+    const navigate = useNavigate();
 
     const register = async () => {
         try {
             const user = await createUserWithEmailAndPassword(auth, registerUser, registerpass)
+            navigate('/crear-perfil')
             console.log(user.user.uid)
         } catch (error) {
             console.log(error.messsage)
         }
 
     };
+    // const handleClickNavMenu = pageURL => { navigate(pageURL) };
 
     return (
         // <div className="App">
@@ -29,7 +34,6 @@ export default function Registrar() {
         // </div>
         <div className="container signin notLogged">
             <header className="header">
-                <h1 className="title">Lucatinder</h1>
                 <div className="logoBox">
                     <img src={logo} alt="LucaTinder" />
                 </div>
@@ -62,11 +66,10 @@ export default function Registrar() {
                         className="form-control"
                     />
                 </div>
-
-                <button className="submit" onClick={register}>
-                    Registrarme
-                </button>
             </form>
+            <button className="submit" onClick={register}>
+                Registrarme
+            </button>
         </div>
 
     )

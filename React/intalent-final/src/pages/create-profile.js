@@ -1,12 +1,8 @@
 import React from 'react'
-<<<<<<< HEAD
 import './create-profile.css'
-
-// import axios from 'axios';
-=======
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import axios from 'axios';
->>>>>>> fe904db401b118ab1ae63d8f7a7fd3957598561a
+
 
 class Crearperfil extends React.Component {
     //const { register, errors, handleSubmit } = useForm();
@@ -19,7 +15,7 @@ class Crearperfil extends React.Component {
             city: '',
             country: '',
             topics: '',
-            bio:'',
+            bio: '',
         };
         this.topics = [
             'Naturaleza',
@@ -58,23 +54,23 @@ class Crearperfil extends React.Component {
         //leo datos
         const persona = {
             loginId: getAuth().currentUser?.uid,
-    gender: this.state.gender,
-    name: this.state.name,
-    city: this.state.city,
-    country: this.state.country,
-    dob: this.state.dob,
-    bio: this.state.bio,
-    likes:[],
-    dislikes: [],
-    topics:[],
+            gender: this.state.gender,
+            name: this.state.name,
+            city: this.state.city,
+            country: this.state.country,
+            dob: this.state.dob,
+            bio: this.state.bio,
+            likes: [],
+            dislikes: [],
+            topics: [],
         };
         //let history = useHistory();
 
         axios
-            .post(`http://localhost:8080/api/crear-perfil`,persona)
+            .post(`http://localhost:8080/api/crear-perfil`, persona)
             .then((resp) => {
                 console.log('perfil creado')
-                
+
                 // navi("http://localhost:4200/main");
                 //history.push('/list-books');
             })
@@ -82,17 +78,11 @@ class Crearperfil extends React.Component {
                 this.setState({ errorMessage: error.message });
                 console.error('Ha habido un error', error);
             });
-    };
-
-    // --------------------
-    // RENDER
-    // --------------------
-
-    //en esencia es lo que tenia en Angular en el HTML + render()
+    }
 
     render() {
         return (
-            <div className="container create">
+            <div className="container create" >
                 <h1 className="h1">Crear Perfil</h1>
 
                 <form onSubmit={this.handleSubmit}>
@@ -173,10 +163,10 @@ class Crearperfil extends React.Component {
                             required
                         />
                         {/* <img
-                        //  [src]="this.persona.image"
-                        //  height="200"
-                        // *ngIf="this.persona.image"
-                        //  /> */}
+                                    //  [src]="this.persona.image"
+                                    //  height="200"
+                                    // *ngIf="this.persona.image"
+                                    //  /> */}
                     </div>
 
 
@@ -218,8 +208,15 @@ class Crearperfil extends React.Component {
                 </form>
             </div >
         );
+
     }
+
 }
 
+// --------------------
+// RENDER
+// --------------------
+
+//en esencia es lo que tenia en Angular en el HTML + render()
 
 export default Crearperfil;

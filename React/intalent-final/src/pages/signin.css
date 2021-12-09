@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 .container {
 	 height: 100vh;
 	 background: linear-gradient(140deg, var(--color-secondary-1) 10%, var(--color-primary) 100%);
@@ -17,8 +21,13 @@
 	 min-width: 200px;
 	 margin-bottom: 2vh;
 }
+.logoBox img{
+    width: 100%;
+}
+
  .signin .form {
-	 margin: 2em;
+
+	 margin: 2em auto;
 	 padding: 2em;
 	 border: 1px solid var(--color-gray);
 	 border-radius: 10px;
@@ -49,7 +58,7 @@
 	 box-shadow: inset 2px 2px 3px 1px var(--color-gray-dark);
 	 outline: none;
 }
- .signin .form .submit {
+ .signin .submit {
 	 display: block;
 	 margin: 0 auto;
 	 width: 30%;
@@ -60,6 +69,6 @@
 	 padding: 1em;
 	 border-radius: 15px;
 }
- .signin .form .submit:hover {
+ .signin .submit:hover {
 	 background-color: var(--color-secondary-1);
  }
