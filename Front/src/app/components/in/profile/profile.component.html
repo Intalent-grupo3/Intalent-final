@@ -6,8 +6,14 @@
         />
     </div>
     <div class="profile-data">
-        <h2 class="profile-name">{{ this.persona.name }}</h2>
-        , <span class="profile-age">{{ this.persona.dob }}</span>
+        <div class="profile-heder">
+            <h2 class="profile-name">{{ this.persona.name }}</h2>
+            , <span class="profile-age">{{ this.persona.dob }}</span>
+            <a class="profile-edit" routerLink="../../edit-profile">
+                <i class="fas fa-edit"></i>
+            </a>
+        </div>
+
         <p class="profile-place">
             <span class="profile-city">{{ this.persona.city }}</span>
             <span class="profile-country">{{ this.persona.country }}</span>

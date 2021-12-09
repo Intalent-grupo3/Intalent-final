@@ -45,15 +45,15 @@ export class CardComponent {
         console.log(
             'le llega este id para generar la persona aleatoria' + this.loginId
         );
-        crudService.getRandomUser(this.loginId).subscribe((res) => {
-            console.log(res);
-            this.users = res;
-        });
     }
 
     ngOnInit() {
         this.parentSubject.subscribe((event) => {
             this.startAnimation(event);
+        });
+        this.crudService.getRandomUser(this.loginId).subscribe((res) => {
+            console.log(res);
+            this.users = res;
         });
     }
 

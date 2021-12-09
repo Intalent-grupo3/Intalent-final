@@ -34,10 +34,7 @@ export class ProfileComponent implements OnInit {
     ngOnInit(): any {
         this.crudService.showuserprofile(this.loginId).subscribe((res) => {
             console.log(res);
-            console.log(this.time);
-
             this.persona = res;
-            console.log(this.persona.dob);
         });
     }
     delete() {

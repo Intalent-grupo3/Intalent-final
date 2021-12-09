@@ -11,6 +11,10 @@
         overflow: hidden;
     }
 
+    &-name {
+        display: inline;
+    }
+
     &-topic {
         display: inline-block;
         border: 2px solid var(--color-secondary-2);

@@ -3,8 +3,8 @@ import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-view',
-    templateUrl: './view.component.html',
-    styleUrls: ['./view.component.scss'],
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss'],
 })
 export class ViewComponent implements OnInit {
     title = 'lucatic-grupo3-final';

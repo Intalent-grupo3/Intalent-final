@@ -25,6 +25,8 @@ export class CreateProfileComponent implements OnInit {
     ];
     topics: Array<string> = [];
     test = [];
+    dob: any;
+    age: any;
 
     constructor(
         private crudService: CrudServicesService,
@@ -43,6 +45,9 @@ export class CreateProfileComponent implements OnInit {
         this.persona.name = x.value;
     }
     logAge(x: any) {
+        this.dob = this.persona.dob;
+        this.age = this.dob.split('T');
+        this.persona.dob = this.age[0];
         this.persona.dob = x.value;
     }
     logGender(x: any) {

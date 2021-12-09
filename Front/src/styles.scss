@@ -62,3 +62,16 @@ input:-webkit-autofill:focus {
 app-header {
     width: 100%;
 }
+
+.backBox {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    font-size: 2em;
+    margin: 0.5em;
+
+    a {
+        color: white;
+    }
+}

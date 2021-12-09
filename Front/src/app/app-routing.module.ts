@@ -9,7 +9,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 
 import { AccountComponent } from './components/in/in.component';
 import { ProfileComponent } from './components/in/profile/profile.component';
-import { ViewComponent } from './components/in/view/view.component';
+import { ViewComponent } from './components/in/main/main.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },

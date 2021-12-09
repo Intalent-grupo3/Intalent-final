@@ -48,7 +48,7 @@ export class CrudServicesService {
 
     // Editar perfil del usuario
     updateUserProfile(loginId: any, data: any): Observable<any> {
-        let API_URL = `${this.REST_API}/borrar-perfil/${loginId}`;
+        let API_URL = `${this.REST_API}/actualizar-perfil/${loginId}`;
         return this.httpClient
             .put(API_URL, data, { headers: this.httpHeaders })
             .pipe(catchError(this.handleError));

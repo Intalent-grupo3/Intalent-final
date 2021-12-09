@@ -18,7 +18,7 @@ import { CreateProfileComponent } from './components/create-profile/create-profi
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AccountComponent } from './components/in/in.component';
-import { ViewComponent } from './components/in/view/view.component';
+import { ViewComponent } from './components/in/main/main.component';
 
 @NgModule({
     declarations: [
