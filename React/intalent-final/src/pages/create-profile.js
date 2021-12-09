@@ -1,4 +1,5 @@
 import React from 'react'
+import './create-profile.css'
 
 // import axios from 'axios';
 
@@ -78,118 +79,130 @@ class Crearperfil extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h2 className="h2">Crear Perfil</h2>
-                </div>
-                <div className="row justify-content-center mt-5">
-                    <div className="col-md-4">
-                        <form onSubmit={this.handleSubmit}>
+            <div className="container create">
+                <h1 className="h1">Crear Perfil</h1>
 
-                            <div className="form-group">
-                                <label>Nombre</label>
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    name="name"
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                            </div>
+                <form onSubmit={this.handleSubmit}>
 
-                            <div className="form-group">
-                                <label>Año de nacimiento</label>
-                                <input
-                                    className="form-control"
-                                    type="date"
-                                    name="dob"
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Mujer</label>
-                                <input
-                                    className="form-control"
-                                    type="radio"
-                                    value="Mujer"
-                                    name="gender"
-                                    onChange={this.handleChange}
-                                    required
-
-                                />
-                                <label>Hombre</label>
-                                <input
-                                    className="form-control"
-                                    type="radio"
-                                    name="gender"
-                                    value="Hombre"
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Ciudad</label>
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    name="city"
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Pais</label>
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    name="country"
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <span>Intereses</span>
-                                {this.topics.map((topic) =>
-                                (
-                                    <div>
-                                        <input
-                                            id={topic}
-                                            className="form-control"
-                                            type="checkbox"
-                                            name="topics"
-                                            onChange={this.handleChange}
-                                            required
-                                        />
-                                        <label for={topic}> {topic}</label>
-                                    </div>
-                                ))}
-                            </div>
-
-
-                            <div className="form-group">
-                                <label>Descripcion</label>
-                                <input
-                                    className="form-control"
-                                    type="textarea"
-                                    name="bio"
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <button className="btn btn-primary btn-block" type="submit">
-                                    Busca tu amor
-                                </button>
-                            </div>
-                        </form>
+                    <div className="form-group">
+                        <label for="create--name">Nombre</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="name"
+                            onChange={this.handleChange}
+                            required
+                        />
                     </div>
-                </div>
+
+                    <div className="form-group">
+                        <label for="create--age">Año de nacimiento</label>
+                        <input
+                            className="form-control"
+                            type="date"
+                            name="dob"
+                            onChange={this.handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group checkgender">
+                        <label for="create--gender">Mujer</label>
+                        <input
+                            className="form-control"
+                            type="radio"
+                            value="Mujer"
+                            name="gender"
+                            onChange={this.handleChange}
+                            required
+
+                        />
+                        <label>Hombre</label>
+                        <input
+                            className="form-control"
+                            type="radio"
+                            name="gender"
+                            value="Hombre"
+                            onChange={this.handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label for="create--city">Ciudad</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="city"
+                            onChange={this.handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label for="create--country">País</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="country"
+                            onChange={this.handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label for="create--picture">Foto</label>
+                        <input
+                            className="form-control"
+                            type="file"
+                            name="create--image"
+                            onChange={this.handleChange}
+                            required
+                        />
+                        {/* <img
+                        //  [src]="this.persona.image"
+                        //  height="200"
+                        // *ngIf="this.persona.image"
+                        //  /> */}
+                    </div>
+
+
+                    <div className="form-group">
+                        <span>Intereses</span>
+                        {this.topics.map((topic) =>
+                        (
+                            <div>
+                                <input
+                                    id={topic}
+                                    className="form-control"
+                                    type="checkbox"
+                                    name="topics"
+                                    onChange={this.handleChange}
+                                    required
+                                />
+                                <label for={topic}> {topic}</label>
+                            </div>
+                        ))}
+                    </div>
+
+
+                    <div className="form-group">
+                        <label for="create--text">Descripcion</label>
+                        <textarea
+                            className="form-control"
+                            type="textarea"
+                            name="bio"
+                            onChange={this.handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <button className="submit" type="submit">
+                            Busca tu amor
+                        </button>
+                    </div>
+                </form>
             </div >
         );
     }
