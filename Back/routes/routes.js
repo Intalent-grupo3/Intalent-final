@@ -25,6 +25,7 @@ router.route('/crearperfil').post((req,res,next)=>{
         }
     })
 })
+
 //pedir la info de nuestro perfil
 router.route('/perfil/:id').get((req, res,next) => {
     Persona.findOne({loginId:req.params.id}, (error, data) => {
@@ -63,22 +64,53 @@ router.route('/actualizar-perfil/:id').put((req,res,next)=>{
 })
 
 //traer perfil aleatorio
+let user;
 router.route('/perfil-aleatorio/:id').get((req,res,next)=>{
     console.log('esto es req.params.id: '+req.params.id)
-    const user = Persona.findOne({loginId:req.params.id});
+     user = Persona.findOne({loginId:req.params.id});
     user.select('likes dislikes')
     user.exec(function(err,user){
         if (err) return handleError(err);
-        console.log(user);
+        console.log(user.likes)
+        Persona.findOne({$and:[{loginId:{$nin :user.likes}},{loginId:{$nin:user.dislikes}}]}, (error, data) => {
+            console.log('Array likes user: '+user.likes)
+            if (error) {
+                return next(error)
+            } else {
+                res.json(data)
+                console.log('Id de la persona que cumple la query'+data.loginId)
+            }
+        })
     })
     
-    Persona.findOne({$and:[{_id:{$nin :[user.likes]}},{_id:{$nin:[user.dislikes]}}]}, (error, data) => {
+    
+})
+
+//dar like a un perfil
+router.route('/dar-like/:id').put((req,res,next)=>{
+    Persona.findOneAndUpdate({loginId:req.params.id},{$push:{likes : req.body}},(error,randUserId)=>{
         if (error) {
-            return next(error)
+            return next(error);
+            console.log(error)
         } else {
-            res.json(data)
+            res.json(randUserId)
+            console.log('Like añadido correctamente!')
         }
     })
 })
+
+//dar dislike a un perfil
+router.route('/dar-dislike/:id').put((req,res,next)=>{
+    Persona.findOneAndUpdate({loginId:req.params.id},{$push:{dislikes : req.body}},(error,randUserId)=>{
+        if (error) {
+            return next(error);
+            console.log(error)
+        } else {
+            res.json(randUserId)
+            console.log('Disike añadido correctamente!')
+        }
+    })
+})
+
 
 export default router;

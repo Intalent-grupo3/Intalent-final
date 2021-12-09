@@ -5,7 +5,7 @@ export interface Persona {
     gender: string;
     city: string;
     country: string;
-    topics: String[];
+    topics: Array<string>;
     bio: string;
-    image:string;
+    image: any;
 }

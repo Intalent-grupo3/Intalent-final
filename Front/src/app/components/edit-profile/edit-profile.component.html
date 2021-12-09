@@ -1,1 +1,152 @@
-<p>edit-profile works!</p>
+<div class="container edit">
+    <app-header></app-header>
+    <div class="backBox">
+        <a routerLink="../account/profile"><i class="fas fa-arrow-left"></i></a>
+    </div>
+    <form class="form">
+        <div class="form-group">
+            <label for="edit--name">Nombre</label>
+            <input
+                required
+                ngModel
+                #userName="ngModel"
+                type="text"
+                name="edit--name"
+                id="edit--name"
+                class="form-control"
+                value=""
+                value="{{ this.persona.name }}"
+                (change)="logName(userName)"
+            />
+            <div
+                class="alert alert-danger"
+                *ngIf="userName.touched && !userName.valid"
+            >
+                Es necesario escribir tu Nombre
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="edit--age">Año de nacimiento</label>
+            <input
+                required
+                ngModel
+                #userAge="ngModel"
+                type="date"
+                name="edit--age"
+                id="edit--age"
+                class="form-control"
+                (change)="logAge(userAge)"
+                value="{{ this.persona.dob }}"
+            />
+        </div>
+        <div class="form-group">
+            <label for="edit--gender">Género</label>
+            <select
+                required
+                ngModel
+                #userGender="ngModel"
+                name="edit--gender"
+                id="edit--gender"
+                class="form-control"
+                (change)="logGender(userGender)"
+                value="{{ this.persona.gender }}"
+            >
+                <option value="male">Hombre</option>
+                <option value="female">Mujer</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="edit--city">Ciudad</label>
+            <input
+                required
+                ngModel
+                #userCity="ngModel"
+                type="text"
+                name="edit--city"
+                id="edit--city"
+                class="form-control"
+                (change)="logCity(userCity)"
+                value="{{ this.persona.city }}"
+            />
+            <div
+                class="alert alert-danger"
+                *ngIf="userCity.touched && !userCity.valid"
+            >
+                Es necesario escribir tu Ciudad
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="edit--country">Pais</label>
+            <input
+                required
+                ngModel
+                #userCountry="ngModel"
+                type="text"
+                name="edit--country"
+                id="edit--country"
+                class="form-control"
+                (change)="logCountry(userCountry)"
+                value="{{ this.persona.country }}"
+            />
+            <div
+                class="alert alert-danger"
+                *ngIf="userCountry.touched && !userCountry.valid"
+            >
+                Es necesario escribir tu Pais
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="edit--country">Foto</label>
+            <input
+                required
+                type="file"
+                name="edit--image"
+                id="edit--image"
+                class="form-control"
+                (change)="logImage($event)"
+            />
+            <img
+                [src]="this.persona.image"
+                height="200"
+                *ngIf="this.persona.image"
+            />
+            <div
+                class="alert alert-danger"
+                *ngIf="userName.touched && !userName.valid"
+            >
+                Es necesario subir una foto.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span>Intereses</span>
+            <div *ngFor="let topic of topicsList">
+                <input
+                    ngModel
+                    #userTopic="ngModel"
+                    type="checkbox"
+                    id="topic-{{ topic }}"
+                    name="{{ topic }}"
+                    value="{{ topic }}"
+                    (change)="logTopic(userTopic)"
+                />
+                <label for="topic-{{ topic }}"> {{ topic }}</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="edit--text">Descripción</label>
+            <textarea
+                required
+                ngModel
+                #userBio="ngModel"
+                name="edit--text"
+                id="edit--text"
+                cols="30"
+                rows="10"
+                (change)="logBio(userBio)"
+                value="{{ this.persona.bio }}"
+            ></textarea>
+        </div>
+        <button class="submit" (click)="log()">Continuar</button>
+    </form>
+</div>
