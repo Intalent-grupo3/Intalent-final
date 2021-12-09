@@ -8,6 +8,7 @@ import { Persona } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { AgeService } from 'src/app/services/age.service';
 
 function retrasar(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -45,7 +46,8 @@ export class CardComponent {
         private router: Router,
         private ngZone: NgZone,
         public userFirebase: AuthService,
-        public firebase: AngularFireAuth
+        public firebase: AngularFireAuth,
+        public AgeService: AgeService
     ) {
         this.loginId = getAuth().currentUser?.uid;
         console.log(
@@ -54,6 +56,7 @@ export class CardComponent {
         crudService.getRandomUser(this.loginId).subscribe((res) => {
             console.log(res);
             this.users = res;
+            this.age = AgeService.calcAge(this.users.dob);
         });
     }
 
@@ -67,9 +70,7 @@ export class CardComponent {
         });
         this.crudService.getRandomUser(this.loginId).subscribe((res) => {
             this.users = res;
-            this.dob = this.users.dob;
-            this.age = this.dob.split('T');
-            this.users.dob = this.age[0];
+            this.age = this.AgeService.calcAge(this.users.dob);
         });
     }
 
@@ -78,9 +79,7 @@ export class CardComponent {
             this.animationState = state;
             this.crudService.getRandomUser(this.loginId).subscribe((res) => {
                 this.users = res;
-                this.dob = this.users.dob;
-                this.age = this.dob.split('T');
-                this.users.dob = this.age[0];
+                this.age = this.AgeService.calcAge(this.users.dob);
             });
         }
     }

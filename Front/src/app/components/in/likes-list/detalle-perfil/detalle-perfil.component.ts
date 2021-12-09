@@ -6,6 +6,7 @@ import { Persona } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
 import { ActivatedRoute } from '@angular/router';
+import { AgeService } from 'src/app/services/age.service';
 
 @Component({
     selector: 'detalle-perfil',
@@ -25,25 +26,24 @@ export class DetallePerfilComponent implements OnInit {
         private ngZone: NgZone,
         public userFirebase: AuthService,
         public firebase: AngularFireAuth,
-        public route: ActivatedRoute
+        public route: ActivatedRoute,
+        public AgeService: AgeService
     ) {
         this.route.paramMap.subscribe((params) => {
             this.loginId = params.get('id');
         });
         console.log(this.loginId);
-        if (!this.persona.image) {
-            this.persona.image =
-                'https://lh3.googleusercontent.com/proxy/8ldb6d9R-HhV0MAqc1LMdgh3PvbEw7OfKKVALifpgcuZr-QMkxnvpQgqNDp7pBRvwqIGPrRdXZxuX13oom81XftrN-eNfbAzFvJ14lRDt4F5pGv4rZI9mbMsUf8TbgCcTARPE74keFeh7GIDnmWxESw';
-        }
     }
 
     ngOnInit(): any {
         this.crudService.showuserprofile(this.loginId).subscribe((res) => {
             console.log(res);
             this.persona = res;
-            this.dob = this.persona.dob;
-            this.age = this.dob.split('T');
-            this.persona.dob = this.age[0];
+            this.persona.age = this.AgeService.calcAge(this.persona.dob);
+            if (!this.persona.image) {
+                this.persona.image =
+                    'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
+            }
         });
     }
 }

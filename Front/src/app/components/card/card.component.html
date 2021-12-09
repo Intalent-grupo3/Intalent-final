@@ -8,7 +8,12 @@
     >
         <img [src]="users.image" title="tphoto" alt="Tinder Photo" />
         <div class="tname">
-            {{ users.name }}, <span class="age">{{ users.dob }}</span>
+            {{ users.name }}, <span class="age">{{ this.age }}</span>
+        </div>
+        <div class="profile-topics">
+            <div class="profile-topic" *ngFor="let topic of this.users.topics">
+                <span>{{ topic }}</span>
+            </div>
         </div>
     </div>
     <div class="tcontrols">

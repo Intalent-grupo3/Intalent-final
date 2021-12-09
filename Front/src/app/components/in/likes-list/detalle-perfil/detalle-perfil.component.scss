@@ -5,6 +5,17 @@
     width: 100%;
     max-width: 360px;
 
+    &-data {
+        width: 100%;
+        font-size: 1.2em;
+    }
+
+    &-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
     &-photoBox {
         width: 100%;
         // height: 30vh;
@@ -15,9 +26,15 @@
         display: inline;
     }
 
+    &-edit {
+        color: var(--color-gray);
+        font-size: 1.5em;
+    }
+
     &-topic {
         display: inline-block;
-        border: 2px solid var(--color-secondary-2);
+        border: 2px solid var(--color-secondary-1);
+        color: var(--color-secondary-1);
         border-radius: 50px;
         font-size: 0.8em;
         padding: 0 0.5em;

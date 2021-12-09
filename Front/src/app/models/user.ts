@@ -10,4 +10,5 @@ export interface Persona {
     image: any;
     likes: Array<string>;
     dislikes: Array<string>;
+    age: Number;
 }

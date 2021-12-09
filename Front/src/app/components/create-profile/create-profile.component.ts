@@ -27,6 +27,7 @@ export class CreateProfileComponent implements OnInit {
     test = [];
     dob: any;
     age: any;
+    validate = [false, false, false, false, false, false];
 
     constructor(
         private crudService: CrudServicesService,
@@ -43,21 +44,33 @@ export class CreateProfileComponent implements OnInit {
     // Recogide de información de los inputs
     logName(x: any) {
         this.persona.name = x.value;
+        if (x.valid) {
+            this.validate[0] = true;
+        }
     }
     logAge(x: any) {
-        this.dob = this.persona.dob;
-        this.age = this.dob.split('T');
-        this.persona.dob = this.age[0];
         this.persona.dob = x.value;
+        if (x.valid) {
+            this.validate[1] = true;
+        }
     }
     logGender(x: any) {
         this.persona.gender = x.value;
+        if (x.valid) {
+            this.validate[2] = true;
+        }
     }
     logCity(x: any) {
         this.persona.city = x.value;
+        if (x.valid) {
+            this.validate[3] = true;
+        }
     }
     logCountry(x: any) {
         this.persona.country = x.value;
+        if (x.valid) {
+            this.validate[4] = true;
+        }
     }
     logImage(event: any) {
         let reader = new FileReader();
@@ -82,10 +95,20 @@ export class CreateProfileComponent implements OnInit {
     }
     logBio(x: any) {
         this.persona.bio = x.value;
+        if (x.valid) {
+            this.validate[5] = true;
+        }
     }
 
     // Uso conjunto de los datos guardados en el objeto
     log(): any {
+        for (let valid of this.validate) {
+            if (valid != true) {
+                console.log(this.validate);
+                return 0;
+            }
+        }
+
         this.persona.loginId = this.userId;
         this.crudService.addnewuser(this.persona).subscribe({
             next: (any) => {

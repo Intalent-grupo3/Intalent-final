@@ -5,6 +5,7 @@ import { getAuth } from 'firebase/auth';
 import { Persona } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudServicesService } from 'src/app/services/crud-services.service';
+import { AgeService } from 'src/app/services/age.service';
 
 @Component({
     selector: 'app-profile',
@@ -22,7 +23,8 @@ export class ProfileComponent implements OnInit {
         private router: Router,
         private ngZone: NgZone,
         public userFirebase: AuthService,
-        public firebase: AngularFireAuth
+        public firebase: AngularFireAuth,
+        public AgeService: AgeService
     ) {
         this.loginId = getAuth().currentUser?.uid;
         if (!this.persona.image) {
@@ -35,6 +37,8 @@ export class ProfileComponent implements OnInit {
         this.crudService.showuserprofile(this.loginId).subscribe((res) => {
             console.log(res);
             this.persona = res;
+            console.log(this.persona.dob);
+            this.persona.age = this.AgeService.calcAge(this.persona.dob);
         });
     }
     delete() {
