@@ -54,7 +54,6 @@ export class CrudServicesService {
             .pipe(catchError(this.handleError));
     }
 
-<<<<<<< HEAD
     //traer persona aleatoria
     getRandomUser(loginId: any): Observable<any> {
         let API_URL = `${this.REST_API}/perfil-aleatorio/${loginId}`;
@@ -68,6 +67,23 @@ export class CrudServicesService {
             catchError(this.handleError)
         );
     }
+
+    //dar like
+    likeUser(loginId: any, randUserId: any): Observable<any> {
+        let API_URL = `${this.REST_API}/dar-like/${loginId}`;
+        return this.httpClient
+            .put(API_URL, randUserId, { headers: this.httpHeaders })
+            .pipe(catchError(this.handleError));
+    }
+
+    //dar dislike
+    dislikeUser(loginId: any, randUserId: any): Observable<any> {
+        let API_URL = `${this.REST_API}/dar-dislike/${loginId}`;
+        return this.httpClient
+            .put(API_URL, randUserId, { headers: this.httpHeaders })
+            .pipe(catchError(this.handleError));
+    }
+
     //tratamiento de errores
     handleError(error: HttpErrorResponse) {
         let errorMessage = '';
@@ -80,46 +96,5 @@ export class CrudServicesService {
         }
         console.log(errorMessage);
         return throwError(() => new Error(errorMessage));
-=======
-  //traer persona aleatoria
-  getRandomUser(loginId:any):Observable<any>{
-    let API_URL = `${this.REST_API}/perfil-aleatorio/${loginId}`;
-    const personarandom=this.httpClient.get(API_URL, { headers: this.httpHeaders })
-    return personarandom
-     .pipe(map((res: any) => {
-         return res || {}
-       }),
-       catchError(this.handleError)
-     )
-  }
-
-  //dar like
-  likeUser(loginId:any,randUserId:any):Observable<any>{
-    let API_URL = `${this.REST_API}/dar-like/${loginId}`;
-    return this.httpClient.put(API_URL, randUserId, { headers: this.httpHeaders })
-    .pipe(
-      catchError(this.handleError)
-    )
-  }
-
-  //dar dislike
-  dislikeUser(loginId:any,randUserId:any):Observable<any>{
-    let API_URL = `${this.REST_API}/dar-dislike/${loginId}`;
-    return this.httpClient.put(API_URL, randUserId, { headers: this.httpHeaders })
-    .pipe(
-      catchError(this.handleError)
-    )
-  }
-
-  //tratamiento de errores
-   handleError(error: HttpErrorResponse) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Handle client error
-      errorMessage = error.error.message;
-    } else {
-      // Handle server error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
->>>>>>> 766091dbe67381797bf86220fc6009a600a4822a
     }
 }
