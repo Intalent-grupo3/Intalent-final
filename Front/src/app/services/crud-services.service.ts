@@ -53,48 +53,52 @@ export class CrudServicesService {
             .put(API_URL, data, { headers: this.httpHeaders })
             .pipe(catchError(this.handleError));
     }
+  //traer persona aleatoria
+  getRandomUser(loginId:any):Observable<any>{
+    let API_URL = `${this.REST_API}/perfil-aleatorio/${loginId}`;
+    const personarandom=this.httpClient.get(API_URL, { headers: this.httpHeaders })
+    return personarandom
+     .pipe(map((res: any) => {
+         return res || {}
+       }),
+       catchError(this.handleError)
+     )
+  }
 
-    //traer persona aleatoria
-    getRandomUser(loginId: any): Observable<any> {
-        let API_URL = `${this.REST_API}/perfil-aleatorio/${loginId}`;
-        const personarandom = this.httpClient.get(API_URL, {
-            headers: this.httpHeaders,
-        });
-        return personarandom.pipe(
-            map((res: any) => {
-                return res || {};
-            }),
-            catchError(this.handleError)
-        );
-    }
+  //dar like
+  likeUser(loginId:any,randUserId:any):Observable<any>{
+    console.log("Se esta llamando al like")
+    let API_URL = `${this.REST_API}/dar-like/${loginId}/${randUserId}`;
+    return this.httpClient.put(API_URL, { headers: this.httpHeaders })
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 
-    //dar like
-    likeUser(loginId: any, randUserId: any): Observable<any> {
-        let API_URL = `${this.REST_API}/dar-like/${loginId}`;
-        return this.httpClient
-            .put(API_URL, randUserId, { headers: this.httpHeaders })
-            .pipe(catchError(this.handleError));
-    }
+  //dar dislike
+  dislikeUser(loginId:any,randUserId:any):Observable<any>{
+    console.log('Hemos llamado al CRUD de dar dislike')
+    let API_URL = `${this.REST_API}/dar-dislike/${loginId}/${randUserId}`;
+    console.log(API_URL)
+    return this.httpClient.put<any>(API_URL, {headers: this.httpHeaders})
+      .pipe(
+        catchError(this.handleError)
+      
+    )
+  }
 
-    //dar dislike
-    dislikeUser(loginId: any, randUserId: any): Observable<any> {
-        let API_URL = `${this.REST_API}/dar-dislike/${loginId}`;
-        return this.httpClient
-            .put(API_URL, randUserId, { headers: this.httpHeaders })
-            .pipe(catchError(this.handleError));
-    }
+  //tratamiento de errores
+  handleError(error: HttpErrorResponse) {
 
-    //tratamiento de errores
-    handleError(error: HttpErrorResponse) {
-        let errorMessage = '';
-        if (error.error instanceof ErrorEvent) {
-            // Handle client error
-            errorMessage = error.error.message;
-        } else {
-            // Handle server error
-            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-        }
-        console.log(errorMessage);
-        return throwError(() => new Error(errorMessage));
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+        // Handle client error
+        errorMessage = error.error.message;
+    } else {
+        // Handle server error
+        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    console.log(errorMessage);
+    return throwError(() => new Error(errorMessage));
+}
 }
