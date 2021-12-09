@@ -25,6 +25,7 @@ router.route('/crearperfil').post((req,res,next)=>{
         }
     })
 })
+
 //pedir la info de nuestro perfil
 router.route('/perfil/:id').get((req, res,next) => {
     Persona.findOne({loginId:req.params.id}, (error, data) => {
@@ -84,5 +85,32 @@ router.route('/perfil-aleatorio/:id').get((req,res,next)=>{
     
     
 })
+
+//dar like a un perfil
+router.route('/dar-like/:id').put((req,res,next)=>{
+    Persona.findOneAndUpdate({loginId:req.params.id},{$push:{likes : req.body}},(error,randUserId)=>{
+        if (error) {
+            return next(error);
+            console.log(error)
+        } else {
+            res.json(randUserId)
+            console.log('Like añadido correctamente!')
+        }
+    })
+})
+
+//dar dislike a un perfil
+router.route('/dar-dislike/:id').put((req,res,next)=>{
+    Persona.findOneAndUpdate({loginId:req.params.id},{$push:{dislikes : req.body}},(error,randUserId)=>{
+        if (error) {
+            return next(error);
+            console.log(error)
+        } else {
+            res.json(randUserId)
+            console.log('Disike añadido correctamente!')
+        }
+    })
+})
+
 
 export default router;
