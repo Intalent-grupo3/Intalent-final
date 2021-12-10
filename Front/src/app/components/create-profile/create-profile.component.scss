@@ -7,6 +7,11 @@
 
     height: inherit;
 
+    .imageBox {
+        height: 10em;
+        width: 10em;
+    }
+
     & .form {
         margin: 10vh 2em 1em;
         padding: 2em;
